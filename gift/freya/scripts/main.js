@@ -9,7 +9,16 @@
   const CANVASHEIGHT = 150
   const CANVASID = 'canvas'
 
-  let texts = ['唐琳欣小盆友', '二十岁这一年', '你一定可以', '成为更酷的人', '加油', '你个小天使', '生日快乐呀❤']
+  //计算日期相减天数 
+  function DateMinus(sDate){ 
+  　　var sdate = new Date(sDate.replace(/-/g, "/")); 
+  　　var now = new Date(); 
+  　　var days = now.getTime() - sdate.getTime(); 
+  　　var day = Math.floor(days / (1000 * 60 * 60 * 24)); 
+  　　return day; 
+  }
+
+  let texts = ['唐琳欣小盆友', '我们已经认识', DateMinus('2018-02-03').toString() + '天啦', '很高兴认识你', '二十岁这一年', '你一定可以', '成为更酷的人', '加油', '你个小天使', '生日快乐呀❤']
 
   let canvas,
     ctx,
