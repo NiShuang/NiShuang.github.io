@@ -19,7 +19,7 @@
   }
 
 
-  let texts = ['傻瓜', '爱你❤']
+  let texts = ['亲爱的傻瓜', '我们已经认识', DateMinus('2018-02-10').toString() + '天啦', '认识你很开心', '爱你❤']
 
   let canvas,
     ctx,
