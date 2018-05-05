@@ -143,6 +143,7 @@
         o.style.cursor = 'pointer'
         o.style.opacity = '0.9'
         o.style.color = '#FFF'
+        o.style.padding = '5px'
         o.style.background = '#434343'
         o.style.border = '1px solid #242424'
         o.style.borderRadius = '5px' 
