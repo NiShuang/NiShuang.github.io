@@ -127,9 +127,30 @@
 
   function event () {
     document.addEventListener('click', function (e) {
+      if (textIndex >= texts.length) {
+        return
+      }
       textIndex++
       if (textIndex >= texts.length) {
-        textIndex--
+        // textIndex--
+        var o = document.createElement('input');
+        o.type = 'button';
+        o.value = '点这里有惊喜啦';
+        o.style.position = 'absolute'
+        o.style.left = '45%'
+        o.style.top = '0px'
+        o.style.fontSize= '1em'
+        o.style.cursor = 'pointer'
+        o.style.opacity = '0.9'
+        o.style.color = '#FFF'
+        o.style.background = '#434343'
+        o.style.border = '1px solid #242424'
+        o.style.borderRadius = '5px' 
+        o.addEventListener("click", function(){
+            window.location.href="http://www.cielni.com/gift/zhuzhu/pic/" 
+        });
+        document.getElementById('footer').appendChild(o);
+        o = null;
         return
       }
       text = texts[textIndex]
@@ -166,7 +187,7 @@
   class Particle {
     constructor (canvas) {
       let spread = canvas.height
-      let size = Math.random() * 1.2
+      let size = Math.random() * 1.5
       // 速度
       this.delta = 0.06
       // 现在的位置
