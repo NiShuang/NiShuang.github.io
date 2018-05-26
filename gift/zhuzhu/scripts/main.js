@@ -14,7 +14,7 @@
   　　var sdate = new Date(sDate.replace(/-/g, "/")); 
   　　var now = new Date(); 
   　　var days = now.getTime() - sdate.getTime(); 
-  　　var day = Math.floor(days / (1000 * 60 * 60 * 24)); 
+  　　var day = Math.floor(days / (1000 * 60 * 60 * 24)) + 1; 
   　　return day; 
   }
 
