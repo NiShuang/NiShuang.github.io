@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
 <meta property="og:description" content="Beautiful Soup入门Beautiful Soup是一个Python库，用来解析html和xml结构的文档。具体关于Beautiful Soup的介绍与使用，可以参考以下资料：  Python爬虫利器二之Beautiful Soup的用法 Beautiful Soup 4.2.0 中文文档  下面是我在使用Beautiful Soup时遇到的小问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-17T05:38:52.868Z">
+<meta property="og:updated_time" content="2018-06-18T05:33:55.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Beautiful Soup 采坑之旅">
 <meta name="twitter:description" content="Beautiful Soup入门Beautiful Soup是一个Python库，用来解析html和xml结构的文档。具体关于Beautiful Soup的介绍与使用，可以参考以下资料：  Python爬虫利器二之Beautiful Soup的用法 Beautiful Soup 4.2.0 中文文档  下面是我在使用Beautiful Soup时遇到的小问题。">
@@ -465,8 +465,18 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">data_soup.find_all(attrs=&#123;<span class="string">"data-foo"</span>: <span class="string">"value"</span>&#125;)</div><div class="line"><span class="comment"># [&lt;div data-foo="value"&gt;foo!&lt;/div&gt;]</span></div></pre></td></tr></table></figure>
 <h2 id="string-和-get-text-的区别"><a href="#string-和-get-text-的区别" class="headerlink" title=".string 和 get_text()的区别"></a>.string 和 get_text()的区别</h2><p>在Beautiful Soup，有两种获取标签内容的方法：.string属性 和 get_text()方法。</p>
 <ul>
-<li>.string 用来获取标签的内容 ,返回一个 NavigableString 对象</li>
-<li>get_text() 用来获取标签中所有字符串包括子标签的内容，返回的是 unicode 类型的字符串</li>
+<li><p>.string 用来获取标签的内容 ,返回一个 NavigableString 对象。</p>
+<ul>
+<li><p>如果tag只有一个 NavigableString 类型子节点,那么这个tag可以使用 .string 得到子节点。</p>
+</li>
+<li><p>如果一个tag仅有一个子节点,那么这个tag也可以使用 .string 方法,输出结果与当前唯一子节点的 .string 结果相同。</p>
+</li>
+<li><p>如果tag包含了多个子节点,tag就无法确定 .string 方法应该调用哪个子节点的内容, .string 的输出结果是 None。</p>
+</li>
+</ul>
+</li>
+<li><p>get_text() 用来获取标签中所有字符串包括子标签的内容，返回的是 unicode 类型的字符串</p>
+</li>
 </ul>
 <p>实际场景中我们一般使用 get_text 方法获取标签中的内容。</p>
 <h2 id="next-sibling-和-find-next-sibling"><a href="#next-sibling-和-find-next-sibling" class="headerlink" title=".next_sibling 和 find_next_sibling()"></a>.next_sibling 和 find_next_sibling()</h2><p>在文档树中,使用 .next_sibling 和 .previous_sibling 属性来查询兄弟节点。实际文档中的tag的 .next_sibling 和 .previous_sibling 属性通常是字符串或空白。例如:</p>
