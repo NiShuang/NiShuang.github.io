@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随笔,生活," />
+  <meta name="keywords" content="实习,java," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="毕业将近一个半月了，拖到了现在才终于开始总结自己的大学四年生活，其实好像也不算晚。首先，真的很感谢在大学这四年，更准确的说感谢这四年遇到的人和顺利度过本科阶段的自己。如果说高中三年开阔了我的知识面的话，那么大学四年的经历开阔的是我的视野。在南京大学的这四年里，我见到了不同的人和更大的世界，他们帮助我改变了很多固有的想法。">
-<meta name="keywords" content="随笔,生活">
+<meta name="description" content="从简单入手Stream 作为 Java 8 的一大亮点，好比一个高级的迭代器（Iterator），单向，不可往复，数据只能遍历一次，遍历过一次后即用尽了，就好比流水从面前流过，一去不复返。  Java 8 中的 Streams API 详解  我们可以利用stream对数据进行分组并求和。示例如下： 12345678910111213List&amp;lt;String&amp;gt; items =">
+<meta name="keywords" content="实习,java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="就算归来不再是少年">
-<meta property="og:url" content="http://yoursite.com/2017/07/31/nju-software/index.html">
+<meta property="og:title" content="Java8 stream 中利用g roupingBy 进行多字段分组求和">
+<meta property="og:url" content="http://yoursite.com/2018/07/14/java-stream-groupingby/index.html">
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
-<meta property="og:description" content="毕业将近一个半月了，拖到了现在才终于开始总结自己的大学四年生活，其实好像也不算晚。首先，真的很感谢在大学这四年，更准确的说感谢这四年遇到的人和顺利度过本科阶段的自己。如果说高中三年开阔了我的知识面的话，那么大学四年的经历开阔的是我的视野。在南京大学的这四年里，我见到了不同的人和更大的世界，他们帮助我改变了很多固有的想法。">
+<meta property="og:description" content="从简单入手Stream 作为 Java 8 的一大亮点，好比一个高级的迭代器（Iterator），单向，不可往复，数据只能遍历一次，遍历过一次后即用尽了，就好比流水从面前流过，一去不复返。  Java 8 中的 Streams API 详解  我们可以利用stream对数据进行分组并求和。示例如下： 12345678910111213List&amp;lt;String&amp;gt; items =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-30T05:09:51.000Z">
+<meta property="og:updated_time" content="2018-07-14T08:40:55.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="就算归来不再是少年">
-<meta name="twitter:description" content="毕业将近一个半月了，拖到了现在才终于开始总结自己的大学四年生活，其实好像也不算晚。首先，真的很感谢在大学这四年，更准确的说感谢这四年遇到的人和顺利度过本科阶段的自己。如果说高中三年开阔了我的知识面的话，那么大学四年的经历开阔的是我的视野。在南京大学的这四年里，我见到了不同的人和更大的世界，他们帮助我改变了很多固有的想法。">
+<meta name="twitter:title" content="Java8 stream 中利用g roupingBy 进行多字段分组求和">
+<meta name="twitter:description" content="从简单入手Stream 作为 Java 8 的一大亮点，好比一个高级的迭代器（Iterator），单向，不可往复，数据只能遍历一次，遍历过一次后即用尽了，就好比流水从面前流过，一去不复返。  Java 8 中的 Streams API 详解  我们可以利用stream对数据进行分组并求和。示例如下： 12345678910111213List&amp;lt;String&amp;gt; items =">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/31/nju-software/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/14/java-stream-groupingby/"/>
 
 
 
 
 
-  <title>就算归来不再是少年 | 年轮说 | Ciel Ni</title>
+  <title>Java8 stream 中利用g roupingBy 进行多字段分组求和 | 年轮说 | Ciel Ni</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -315,7 +315,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/31/nju-software/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/14/java-stream-groupingby/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ciel Ni">
@@ -332,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">就算归来不再是少年</h1>
+          <h1 class="post-title" itemprop="name headline">Java8 stream 中利用g roupingBy 进行多字段分组求和</h1>
         
 
         <div class="post-meta">
@@ -344,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T20:43:56+08:00">
-                2017-07-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T14:34:37+08:00">
+                2018-07-14
               </time>
             
 
@@ -367,8 +367,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/java笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">java笔记</span>
                   </a>
                 </span>
 
@@ -406,35 +406,26 @@
       
 
       
-        <p>毕业将近一个半月了，拖到了现在才终于开始总结自己的大学四年生活，其实好像也不算晚。首先，真的很感谢在大学这四年，更准确的说感谢这四年遇到的人和顺利度过本科阶段的自己。如果说高中三年开阔了我的知识面的话，那么大学四年的经历开阔的是我的视野。在南京大学的这四年里，我见到了不同的人和更大的世界，他们帮助我改变了很多固有的想法。<br><a id="more"></a> </p>
-<h3 id="兴趣真的是最好的老师"><a href="#兴趣真的是最好的老师" class="headerlink" title="兴趣真的是最好的老师"></a>兴趣真的是最好的老师</h3><p>当初选择软件专业我是没有太多犹豫的，不是说我对软件这个行业有多感兴趣，而是把不感兴趣和我认为没有前途的专业排除掉后只剩下它了。当时我觉得兴趣什么的并不重要，就业压力摆在那自己也会好好学的。</p>
-<p>经过大概一个多学期，我就知道我错了。我们可以假设高中的学习是一个维度的，努力学习成绩会上来一点，松懈了会下降一点，我们只在乎好好学习这件事，似乎这就是评判一个高中生的唯一标准。到了大学，你会发现就算你认真完成了老师布置的作业，好好复习认真备考，还是达不到预期。因为大学的学习不止这一个维度，那些对本专业具有浓厚兴趣的学生往往会自主去探索远超于课本的内容，在专业方面远远超过了只是认真完成老师任务的学生。有时候觉得自己很努力地在学专业知识了，很努力在在写代码，尝试超越书本了，却还是力不从心。因为别人先天的兴趣优势，而我说实在的对写代码又有多少兴趣呢？</p>
-<p>我在富士通面试的时候，在我前一个面试的学生是一个拥有大量项目经验的软院同学，尽管看成绩的话我似乎稍好一点，但我看的出面试官心里是更倾向他的。在面试的过程中他不断地问我如何看待别人拥有如此多的项目经历而你却没有什么。我也无言以对。大学期间自主参加的项目确实偏少，很大的原因就是对这些软件比赛提不起兴趣，没有什么热情。</p>
-<p>这可能就是一个先天的优势，如果大学是一场400米比赛，那么在我看来拥有专业兴趣的人在起跑的时候就已经甩开我100多米了。</p>
-<p>在经历了大学四年后，我更加确信了兴趣真的是最好的老师。如果有你非常感兴趣的专业，请一定不要犹豫，你不知道那些选择自己不感兴趣的专业的学长学姐们学得有多痛苦。</p>
-<h3 id="行动力很重要"><a href="#行动力很重要" class="headerlink" title="行动力很重要"></a>行动力很重要</h3><p>《火星救援》的结尾，马特达蒙有一段台词：</p>
+        <h2 id="从简单入手"><a href="#从简单入手" class="headerlink" title="从简单入手"></a>从简单入手</h2><p>Stream 作为 Java 8 的一大亮点，好比一个高级的迭代器（Iterator），单向，不可往复，数据只能遍历一次，遍历过一次后即用尽了，就好比流水从面前流过，一去不复返。</p>
 <blockquote>
-<p>At some point, everything’s going to go south on you.<br>在某个时候，一切都会变得越来越糟糕</p>
-<p>Everything’s going to go south and you’re going to say “This is it.”<br>当一切越来越糟时，你只能坚强地面对</p>
-<p>This is how I end.<br>这是我如何解决这个问题的</p>
-<p>Now you can either accept that<br>你要么屈服</p>
-<p>or you can get to work.<br>要么反抗</p>
-<p>That’s all it is.<br>就是这样</p>
-<p>You just begin.<br>你只要开始</p>
-<p>You do the math. You solve one problem<br>进行计算，解决一个问题</p>
-<p>and you solve the next one,<br>解决下一个问题</p>
-<p>and then the next.<br>解决下下个问题</p>
-<p>And if you solve enough problems, you get to come home.<br>等解决了足够的问题，你就能回家了</p>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/" target="_blank" rel="external">Java 8 中的 Streams API 详解</a></p>
 </blockquote>
-<p>在高中的学习生活中，我们遇到的无非是一道难题之类的颗粒度较小的问题。而到了大学迎面袭来的可不是一道题目这样可控的东西了，可能是一个需要从头开始组织的活动，可能是一场毫无准备的考试，可能是一项毫无头绪的课程设计。每当我知道自己要面对这类的问题时，我总会出现短暂的拖延症状。可能是不知道如何开始，也可能是害怕开始，因为一旦开始，就要连续好几天没日没夜地投身进去。我本能地会去想，能不能不要做。这种想法可以让我逃掉软件比赛的压力，却逃不掉考试，逃不掉实习。</p>
-<p>唯一的办法就是快速制定计划，然后开始执行计划。就像马特达蒙说的 <em>“You solve one problem and you solve the next one, and then the next. And if you solve enough problems, you get to come home.”</em> 把未来的任务分成一个个颗粒足够细的小任务，然后一个接着一个去解决这些任务，等到把所有的任务都解决了，你的工作差不多就完成了。</p>
-<p>空想计划没有用，一定要去做。我现在觉得我大学四分之一的时间浪费在了等待与空想上。</p>
-<h3 id="每一条你走过的路-都是人生的必经之路"><a href="#每一条你走过的路-都是人生的必经之路" class="headerlink" title="每一条你走过的路 都是人生的必经之路"></a>每一条你走过的路 都是人生的必经之路</h3><p>这是我大学时期体会最最最深刻的一句话，大学里大大小小很多事情基本都在我心里印证了它。</p>
-<p>刚进大学那会儿，我们对学长学姐是很依赖的，我们总想从学长学姐口中得到关于大学许许多多的经验，好让自己少走一点弯路，在本科的道路上走得更轻盈一点。</p>
-<p>然而问题是，经验实际上是一个很虚的东西，它是因人而异的。在大多数情况下，学长学姐们的经验是无法取代自己的亲身经历的。</p>
-<p>首先，学长学姐把他们通过亲身经历得来的经验用语言表达出来的时候，大多数都是笼统的概括，给我们一个大概的印象。比如这门课坑不坑，考试难不难，这个老师好不好，这个知识点重不重要等等。但是课程难在哪里，考试重点是什么等等，这些细节方面是他们无法告诉我们却又是很重要的。只有我们真真切切经历过，我们才会形成一个完整的认知，到时候你会发现，这根本不是难不难和坑不坑所能概括的。从学长和学姐的视角来说，他们无法把完整的认知传达给我们，只能用通俗简易的形容词把他们的印象最直接地传达给我们。</p>
-<p>其次。经验什么的都是因人而异的，具有特殊性和偶然性。仅靠前人的判断下定结论显然太过随便，最多只能当参考。</p>
-<p>另外，很多感受是要经历过才能更深刻的，在大学四年这个成长阶段，有些该踩的坑是一定要踩的，有些该碰的壁是一定要碰的，这样在以后的经历中才能避免重复犯错。这和解一道数学题目是一样的，看一遍参考答案和自己完完整整的做一遍的效果是天差地别的。</p>
+<p>我们可以利用stream对数据进行分组并求和。示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">List&lt;String&gt; items =</div><div class="line">        Arrays.asList(<span class="string">"apple"</span>, <span class="string">"apple"</span>, <span class="string">"banana"</span>,</div><div class="line">                <span class="string">"apple"</span>, <span class="string">"orange"</span>, <span class="string">"banana"</span>, <span class="string">"papaya"</span>);</div><div class="line"></div><div class="line">Map&lt;String, Long&gt; result =</div><div class="line">        items.stream().collect(</div><div class="line">                Collectors.groupingBy(</div><div class="line">                        Function.identity(), Collectors.counting()</div><div class="line">                )</div><div class="line">        );</div><div class="line"></div><div class="line">System.out.println(result);</div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;papaya=<span class="number">1</span>, orange=<span class="number">1</span>, banana=<span class="number">2</span>, apple=<span class="number">3</span>&#125;</div></pre></td></tr></table></figure>
+<h2 id="进阶需求"><a href="#进阶需求" class="headerlink" title="进阶需求"></a>进阶需求</h2><p>在实际需求中，我们可能需要对一组对象进行分组，而且分组的条件有多个。比如对国家和产品类型进行双重分组，一种比较复杂的方法是先对产品类型进行分组，然后对每一个产品类型中的国际名进行分组求和。示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, List&lt;item&gt;&gt; countMap = recordItems.stream().collect(Collectors.groupingBy(o -&gt; o.getProductType()));</div><div class="line"></div><div class="line">List&lt;Record&gt; records = <span class="keyword">new</span> ArrayList&lt;Record&gt;;</div><div class="line">countMap.keySet().forEach(productType -&gt; &#123;</div><div class="line">	Map&lt;String, Long&gt; countMap1 = countMap.get(productType).stream().collect(Collectors.groupingBy(o -&gt; o.getCountry(), Collectors.counting()));</div><div class="line">	countMap1(key).stream().forEach(country -&gt; &#123;</div><div class="line">		Record record = <span class="keyword">new</span> Record();</div><div class="line">	    record.set(<span class="string">"device_type"</span>, productType);</div><div class="line">	    record.set(<span class="string">"location"</span>, country;</div><div class="line">	    record.set(<span class="string">"count"</span>, countMap1(key).intValue());</div><div class="line">	    records.add(record);</div><div class="line">	&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="更好的解决方法"><a href="#更好的解决方法" class="headerlink" title="更好的解决方法"></a>更好的解决方法</h2><p>上面的方法在应对两个字段的分组要求时，还能应付的过来，但如果字段超过两个时，每增加一个字段，就会多出很多代码行，显然不太合理。更合理的方法是，增加一个 getKey()方法，返回多个字段组成的唯一key，比如通过下划线连接等等。示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">RecordItem</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String deviceType;</div><div class="line">    <span class="keyword">private</span> String country;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RecordItem</span><span class="params">(String deviceType, String country)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.deviceType = deviceType;</div><div class="line">        <span class="keyword">this</span>.country = country;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getKey</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> deviceType + <span class="string">"_"</span> + country;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> RecordItem <span class="title">parseKey</span><span class="params">(String s)</span></span>&#123;</div><div class="line">        String[] parts = s.split(<span class="string">"_"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RecordItem(parts[<span class="number">0</span>], parts[<span class="number">1</span>]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 分组统计</span></div><div class="line">Map&lt;String, Long&gt; countMap = recordItems.stream().collect(Collectors.groupingBy(o -&gt; o.getKey(), Collectors.counting()));</div><div class="line"></div><div class="line">List&lt;Record&gt; countRecords = countMap.keySet().stream().map(key -&gt; &#123;</div><div class="line">    RecordItem recordItem = RecordItem.parseKey(key);</div><div class="line">    Record record = <span class="keyword">new</span> Record();</div><div class="line">    record.set(<span class="string">"device_type"</span>, recordItem.deviceType);</div><div class="line">    record.set(<span class="string">"location"</span>, recordItem.country;</div><div class="line">    record.set(<span class="string">"count"</span>, countMap.get(key).intValue());</div><div class="line">    <span class="keyword">return</span> record;</div><div class="line">&#125;).collect(Collectors.toList());</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/" target="_blank" rel="external">Java 8 中的 Streams API 详解</a></li>
+<li><a href="https://blog.csdn.net/u013078669/article/details/52717142" target="_blank" rel="external">Java 8 – 分组GroupBy</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>文章标题：<a href="http://www.cielni.com/2018/07/14/java-stream-groupingby/" target="_blank" rel="external">Java8 stream 中利用g roupingBy 进行多字段分组求和</a><br>文章作者：<a href="http://www.cielni.com/about/" target="_blank" rel="external">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2018/07/14/java-stream-groupingby/" target="_blank" rel="external">http://www.cielni.com/2018/07/14/java-stream-groupingby/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
+</blockquote>
 
       
     </div>
@@ -485,9 +476,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/随笔/" rel="tag"># 随笔</a>
+            <a href="/tags/实习/" rel="tag"># 实习</a>
           
-            <a href="/tags/生活/" rel="tag"># 生活</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -500,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/28/zol-phone-crawler/" rel="next" title="ZOL中关村在线手机参数爬虫">
-                <i class="fa fa-chevron-left"></i> ZOL中关村在线手机参数爬虫
+              <a href="/2018/06/28/beautifulsoup-note/" rel="next" title="Beautiful Soup 文档搜索方法(find_all find)中 text 参数的局限与解决方法">
+                <i class="fa fa-chevron-left"></i> Beautiful Soup 文档搜索方法(find_all find)中 text 参数的局限与解决方法
               </a>
             
           </div>
@@ -509,10 +500,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/15/echoes-of-the-rainbow/" rel="prev" title="【转载】时间就是一段路的小偷 by Allen Yin">
-                【转载】时间就是一段路的小偷 by Allen Yin <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -794,7 +781,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#兴趣真的是最好的老师"><span class="nav-number">1.</span> <span class="nav-text">兴趣真的是最好的老师</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行动力很重要"><span class="nav-number">2.</span> <span class="nav-text">行动力很重要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每一条你走过的路-都是人生的必经之路"><span class="nav-number">3.</span> <span class="nav-text">每一条你走过的路 都是人生的必经之路</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从简单入手"><span class="nav-number">1.</span> <span class="nav-text">从简单入手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶需求"><span class="nav-number">2.</span> <span class="nav-text">进阶需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更好的解决方法"><span class="nav-number">3.</span> <span class="nav-text">更好的解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
