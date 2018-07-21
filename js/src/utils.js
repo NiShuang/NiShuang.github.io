@@ -300,7 +300,7 @@ $(document).ready(function() {
       updateSidebarHeightTimer = setTimeout(function() {
         var sidebarWrapperHeight = document.body.clientHeight - NexT.utils.getSidebarSchemePadding();
 
-        updateSidebarHeight(sidebarWrapperHeight + 1100 -638);
+        updateSidebarHeight(sidebarWrapperHeight + 1200 -638);
       }, 0);
     });
 
@@ -314,7 +314,7 @@ $(document).ready(function() {
     }
 
     // Initialize Sidebar & TOC Height.
-    updateSidebarHeight(document.body.clientHeight - NexT.utils.getSidebarSchemePadding() + 1100 -638);
+    updateSidebarHeight(document.body.clientHeight - NexT.utils.getSidebarSchemePadding() + 1200 -638);
   }
 
   initSidebarDimension();
