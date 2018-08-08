@@ -19,7 +19,7 @@
   }
 
 
-  let texts = ['袁书棋', '你是猪', '哈哈哈']
+  let texts = ['亲爱的老婆', '我们认识', '已经' + DateMinus('2018-06-26').toString() + '天', '我们在一起', '已经' + DateMinus('2018-07-01').toString() + '天啦', '未来的日子', '手给你', '怀抱给你', '忐忑给你', '等待给你', '思念给你', '灵魂还有余生', '统统给你', '但你归我', '好不好', '爱你呀❤']
 
   let canvas,
     ctx,
@@ -127,10 +127,33 @@
 
   function event () {
     document.addEventListener('click', function (e) {
-      if (textIndex >= texts.length - 1) {
+      if (textIndex >= texts.length) {
         return
       }
       textIndex++
+      if (textIndex >= texts.length) {
+        // textIndex--
+        var o = document.createElement('input');
+        o.type = 'button';
+        o.value = '点这里有惊喜啦';
+        o.style.position = 'absolute'
+        o.style.left = '45%'
+        o.style.top = '0px'
+        o.style.fontSize= '1em'
+        o.style.cursor = 'pointer'
+        o.style.opacity = '0.9'
+        o.style.color = '#FFF'
+        o.style.padding = '5px'
+        o.style.background = '#434343'
+        o.style.border = '1px solid #242424'
+        o.style.borderRadius = '5px' 
+        o.addEventListener("click", function(){
+            window.location.href="http://www.cielni.com/gift/yush/pic/" 
+        });
+        document.getElementById('footer').appendChild(o);
+        o = null;
+        return
+      }
       text = texts[textIndex]
       console.log(textIndex)
     }, false)
