@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cielni.com/"/>
-  <updated>2018-09-03T08:34:01.315Z</updated>
+  <updated>2018-09-03T08:35:44.091Z</updated>
   <id>http://cielni.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://cielni.com/2018/09/03/crawler-list/"/>
     <id>http://cielni.com/2018/09/03/crawler-list/</id>
     <published>2018-09-03T08:28:57.000Z</published>
-    <updated>2018-09-03T08:34:01.315Z</updated>
+    <updated>2018-09-03T08:35:44.091Z</updated>
     
     <content type="html"><![CDATA[<ul><li><a href="https://github.com/NiShuang/douyin-crawler" target="_blank" rel="external">抖音个人主页爬虫</a></li><li><a href="https://github.com/NiShuang/instagram-crawler" target="_blank" rel="external">Instagram 个人主页爬虫</a></li><li><a href="https://github.com/NiShuang/twitter-login" target="_blank" rel="external">Twitter 模拟登录</a></li><li><a href="https://github.com/NiShuang/wx-index" target="_blank" rel="external">微信指数爬虫</a></li><li><a href="https://github.com/NiShuang/google_trends_cralwer" target="_blank" rel="external">Google Trends 爬虫</a></li><li><a href="https://github.com/NiShuang/fetch_baidu_index" target="_blank" rel="external">百度指数爬虫</a></li></ul>]]></content>
     
@@ -35,6 +35,8 @@
       
     
     </summary>
+    
+      <category term="爬虫笔记" scheme="http://cielni.com/categories/%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0/"/>
     
     
       <category term="python" scheme="http://cielni.com/tags/python/"/>

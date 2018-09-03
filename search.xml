@@ -4,6 +4,9 @@
     <title><![CDATA[近期爬虫项目整理]]></title>
     <url>%2F2018%2F09%2F03%2Fcrawler-list%2F</url>
     <content type="text"><![CDATA[抖音个人主页爬虫 Instagram 个人主页爬虫 Twitter 模拟登录 微信指数爬虫 Google Trends 爬虫 百度指数爬虫]]></content>
+      <categories>
+        <category>爬虫笔记</category>
+      </categories>
       <tags>
         <tag>python</tag>
         <tag>爬虫</tag>
