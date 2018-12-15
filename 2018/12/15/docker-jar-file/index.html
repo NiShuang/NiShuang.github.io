@@ -121,17 +121,18 @@
 
 
 
-  <meta name="description" content="起风了 唯有努力生存">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://cielni.com/categories/index.html">
+  <meta name="description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。 使用 getResourceAsStream在这种情况下，如果">
+<meta name="keywords" content="java,实习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 jar 包运行项目时的资源文件定位问题">
+<meta property="og:url" content="http://cielni.com/2018/12/15/docker-jar-file/index.html">
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
-<meta property="og:description" content="起风了 唯有努力生存">
+<meta property="og:description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。 使用 getResourceAsStream在这种情况下，如果">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-30T05:00:59.000Z">
+<meta property="og:updated_time" content="2018-12-15T08:25:10.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="起风了 唯有努力生存">
+<meta name="twitter:title" content="使用 jar 包运行项目时的资源文件定位问题">
+<meta name="twitter:description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。 使用 getResourceAsStream在这种情况下，如果">
 
 
 
@@ -140,7 +141,7 @@
 
 
 
-  <link rel="canonical" href="http://cielni.com/categories/"/>
+  <link rel="canonical" href="http://cielni.com/2018/12/15/docker-jar-file/"/>
 
 
 
@@ -150,7 +151,7 @@
   };
 </script>
 
-  <title>分类 | 年轮说 | Ciel Ni</title>
+  <title>使用 jar 包运行项目时的资源文件定位问题 | 年轮说 | Ciel Ni</title>
   
 
 
@@ -272,7 +273,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">6</span></a>
   </li>
@@ -355,109 +356,275 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cielni.com/2018/12/15/docker-jar-file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ciel Ni">
+      <meta itemprop="description" content="起风了 唯有努力生存">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="年轮说 | Ciel Ni">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">分类</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                  
-                    
-                  
-                
-                目前共计 6 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java笔记/">java笔记</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python笔记/">python笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/光影笔记/">光影笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端笔记/">前端笔记</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫笔记/">爬虫笔记</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">2</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">使用 jar 包运行项目时的资源文件定位问题
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-15 14:51:40" itemprop="dateCreated datePublished" datetime="2018-12-15T14:51:40+08:00">2018-12-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java笔记/" itemprop="url" rel="index"><span itemprop="name">java笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。</p>
+<h2 id="使用-getResourceAsStream"><a href="#使用-getResourceAsStream" class="headerlink" title="使用 getResourceAsStream"></a>使用 getResourceAsStream</h2><p>在这种情况下，如果想让 jar 读取到自己的资源文件，可以通过类加载器的 getResourceAsStream() 方法来解决。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">InputStream is = this.getClass().getResourceAsStream(&quot;geolite/GeoLite2-City.mmdb&quot;)</div></pre></td></tr></table></figure></p>
+<h2 id="想办法让资源文件出现在-jar-包同级目录下"><a href="#想办法让资源文件出现在-jar-包同级目录下" class="headerlink" title="想办法让资源文件出现在 jar 包同级目录下"></a>想办法让资源文件出现在 jar 包同级目录下</h2><p>既然无法读取 jar 包内部的文件，那可以转变思路，使资源文件出现在 jar 包的同级目录下，然后可以获取 jar 包的路径，从而获得资源文件的路径。</p>
+<p>由于我的项目是多模块，所以我把资源文件放在项目根目录下，同主模块处在同级。这样打包以后，资源文件不会被打包进 jar 包内，而是和主模块同级。然后通过 Docker 把资源文件移动到 jar 包所在的目录下，这样就可以轻松访问到资源文件了。</p>
+<p>Docker 指令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">RUN mkdir /data_cleaner &amp;&amp; mkdir /data_cleaner/lib &amp;&amp; mkdir /data_cleaner/resources</div><div class="line"></div><div class="line">COPY resources/ /data_cleaner/resources/</div><div class="line"></div><div class="line">COPY runner/target/lib/* /data_cleaner/lib/</div><div class="line"></div><div class="line">COPY runner/target/*.jar /data_cleaner</div><div class="line"></div><div class="line">CMD java -jar /data_cleaner/data-cleaning-runner.jar</div></pre></td></tr></table></figure>
+<p>需要注意的是，上述方法只适用于 Docker 环境下，所以我们需要区分项目是在 IDE 环境运行，还是 Docker 环境下使用 jar 包运行。可以通过以下代码来判断，同时获取 jar 包的所在目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">String filePath = &quot;/resources/geolite/GeoLite2-City.mmdb&quot;;</div><div class="line">String path;</div><div class="line">// 判断 ide 运行还是 jar 运行</div><div class="line">File file = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());</div><div class="line"></div><div class="line">if (file.isFile()) &#123;	// jar 运行</div><div class="line">	// 获取 jar 包所在目录	</div><div class="line">    path = System.getProperty(&quot;java.class.path&quot;);</div><div class="line">    int firstIndex = path.lastIndexOf(System.getProperty(&quot;path.separator&quot;)) + 1;</div><div class="line">    int lastIndex = path.lastIndexOf(File.separator);</div><div class="line">    path = path.substring(firstIndex, lastIndex);</div><div class="line">&#125; else &#123;				// IDE 运行</div><div class="line">    path = System.getProperty(&quot;user.dir&quot;);</div><div class="line">&#125;</div><div class="line">path += filePath;</div><div class="line">System.out.println(path);</div><div class="line">File myFile = new File(path);</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://blog.csdn.net/luo_jia_wen/article/details/50057191" target="_blank" rel="external">获取jar包内部的资源文件
+</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>文章标题：<a href="http://www.cielni.com/2018/12/15/docker-jar-file/" target="_blank" rel="external">使用 jar 包运行项目时的资源文件定位问题</a><br>文章作者：<a href="http://www.cielni.com/about/" target="_blank" rel="external">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2018/12/15/docker-jar-file/" target="_blank" rel="external">http://www.cielni.com/2018/12/15/docker-jar-file/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
+</blockquote>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Ciel Ni wechat" style="width: 200px; max-width: 100%;"/>
+    <div>如有疑问或建议欢迎加微信讨论</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin-reward.png" alt="Ciel Ni 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward.png" alt="Ciel Ni 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/实习/" rel="tag"># 实习</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/03/crawler-list/" rel="next" title="近期爬虫项目整理">
+                <i class="fa fa-chevron-left"></i> 近期爬虫项目整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    
-    
-    
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ1My82MDIx"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -480,9 +647,18 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -698,6 +874,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-getResourceAsStream"><span class="nav-number">2.</span> <span class="nav-text">使用 getResourceAsStream</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#想办法让资源文件出现在-jar-包同级目录下"><span class="nav-number">3.</span> <span class="nav-text">想办法让资源文件出现在 jar 包同级目录下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -889,6 +1081,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1285,7 +1488,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script type="text/javascript">
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('manual', "#更多");
   
   </script>
 

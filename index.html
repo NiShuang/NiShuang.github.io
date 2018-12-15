@@ -282,7 +282,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">21</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">22</span></a>
   </li>
 
       
@@ -359,6 +359,175 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cielni.com/2018/12/15/docker-jar-file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ciel Ni">
+      <meta itemprop="description" content="起风了 唯有努力生存">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="年轮说 | Ciel Ni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/15/docker-jar-file/" itemprop="url">
+                  使用 jar 包运行项目时的资源文件定位问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-15 14:51:40" itemprop="dateCreated datePublished" datetime="2018-12-15T14:51:40+08:00">2018-12-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java笔记/" itemprop="url" rel="index"><span itemprop="name">java笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。</p>
+<h2 id="使用-getResourceAsStream"><a href="#使用-getResourceAsStream" class="headerlink" title="使用 getResourceAsStream"></a>使用 getResourceAsStream</h2><p>在这种情况下，如果想让 jar 读取到自己的资源文件，可以通过类加载器的 getResourceAsStream() 方法来解决。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">InputStream is = this.getClass().getResourceAsStream(&quot;geolite/GeoLite2-City.mmdb&quot;)</div></pre></td></tr></table></figure></p>
+<h2 id="想办法让资源文件出现在-jar-包同级目录下"><a href="#想办法让资源文件出现在-jar-包同级目录下" class="headerlink" title="想办法让资源文件出现在 jar 包同级目录下"></a>想办法让资源文件出现在 jar 包同级目录下</h2><p>既然无法读取 jar 包内部的文件，那可以转变思路，使资源文件出现在 jar 包的同级目录下，然后可以获取 jar 包的路径，从而获得资源文件的路径。</p>
+<p>由于我的项目是多模块，所以我把资源文件放在项目根目录下，同主模块处在同级。这样打包以后，资源文件不会被打包进 jar 包内，而是和主模块同级。然后通过 Docker 把资源文件移动到 jar 包所在的目录下，这样就可以轻松访问到资源文件了。</p>
+<p>Docker 指令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">RUN mkdir /data_cleaner &amp;&amp; mkdir /data_cleaner/lib &amp;&amp; mkdir /data_cleaner/resources</div><div class="line"></div><div class="line">COPY resources/ /data_cleaner/resources/</div><div class="line"></div><div class="line">COPY runner/target/lib/* /data_cleaner/lib/</div><div class="line"></div><div class="line">COPY runner/target/*.jar /data_cleaner</div><div class="line"></div><div class="line">CMD java -jar /data_cleaner/data-cleaning-runner.jar</div></pre></td></tr></table></figure>
+<p>需要注意的是，上述方法只适用于 Docker 环境下，所以我们需要区分项目是在 IDE 环境运行，还是 Docker 环境下使用 jar 包运行。可以通过以下代码来判断，同时获取 jar 包的所在目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">String filePath = &quot;/resources/geolite/GeoLite2-City.mmdb&quot;;</div><div class="line">String path;</div><div class="line">// 判断 ide 运行还是 jar 运行</div><div class="line">File file = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());</div><div class="line"></div><div class="line">if (file.isFile()) &#123;	// jar 运行</div><div class="line">	// 获取 jar 包所在目录	</div><div class="line">    path = System.getProperty(&quot;java.class.path&quot;);</div><div class="line">    int firstIndex = path.lastIndexOf(System.getProperty(&quot;path.separator&quot;)) + 1;</div><div class="line">    int lastIndex = path.lastIndexOf(File.separator);</div><div class="line">    path = path.substring(firstIndex, lastIndex);</div><div class="line">&#125; else &#123;				// IDE 运行</div><div class="line">    path = System.getProperty(&quot;user.dir&quot;);</div><div class="line">&#125;</div><div class="line">path += filePath;</div><div class="line">System.out.println(path);</div><div class="line">File myFile = new File(path);</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://blog.csdn.net/luo_jia_wen/article/details/50057191" target="_blank" rel="external">获取jar包内部的资源文件
+</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>文章标题：<a href="http://www.cielni.com/2018/12/15/docker-jar-file/" target="_blank" rel="external">使用 jar 包运行项目时的资源文件定位问题</a><br>文章作者：<a href="http://www.cielni.com/about/" target="_blank" rel="external">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2018/12/15/docker-jar-file/" target="_blank" rel="external">http://www.cielni.com/2018/12/15/docker-jar-file/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1809,168 +1978,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cielni.com/2017/07/25/operation-love/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ciel Ni">
-      <meta itemprop="description" content="起风了 唯有努力生存">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="年轮说 | Ciel Ni">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/25/operation-love/" itemprop="url">
-                  健的最后告白（求婚大作战）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-07-25 18:34:11" itemprop="dateCreated datePublished" datetime="2017-07-25T18:34:11+08:00">2017-07-25</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/光影笔记/" itemprop="url" rel="index"><span itemprop="name">光影笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>14年間　<br>14年来　</p>
-<p>楽しいときも　<br>快乐时</p>
-<p>辛い時も　<br>难过时</p>
-<p>苦しい時も　<br>痛苦时</p>
-<p>ずっと一緒に過ごしてきた礼を　<br>都一起度过的礼</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/25/operation-love/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2025,7 +2032,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
