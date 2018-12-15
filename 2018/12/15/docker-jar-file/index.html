@@ -121,18 +121,18 @@
 
 
 
-  <meta name="description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。 使用 getResourceAsStream在这种情况下，如果">
+  <meta name="description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。">
 <meta name="keywords" content="java,实习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 jar 包运行项目时的资源文件定位问题">
 <meta property="og:url" content="http://cielni.com/2018/12/15/docker-jar-file/index.html">
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
-<meta property="og:description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。 使用 getResourceAsStream在这种情况下，如果">
+<meta property="og:description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-15T08:25:10.832Z">
+<meta property="og:updated_time" content="2018-12-15T08:27:00.335Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 jar 包运行项目时的资源文件定位问题">
-<meta name="twitter:description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。 使用 getResourceAsStream在这种情况下，如果">
+<meta name="twitter:description" content="背景把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。">
 
 
 
@@ -480,7 +480,7 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>把 java 项目打包成 jar 包时，资源文件夹 resources 下的文件会被打包进 jar 包里面。当使用 jar 运行整个项目时， 通过 getResource() 方法获得的资源文件路径会变成 xxx.jar!/xxx 的格式，这种格式的路径，不能通过 new File 的方式找到文件。这里我提供两个思路解决这个问题。<br><a id="more"></a> </p>
 <h2 id="使用-getResourceAsStream"><a href="#使用-getResourceAsStream" class="headerlink" title="使用 getResourceAsStream"></a>使用 getResourceAsStream</h2><p>在这种情况下，如果想让 jar 读取到自己的资源文件，可以通过类加载器的 getResourceAsStream() 方法来解决。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">InputStream is = this.getClass().getResourceAsStream(&quot;geolite/GeoLite2-City.mmdb&quot;)</div></pre></td></tr></table></figure></p>
 <h2 id="想办法让资源文件出现在-jar-包同级目录下"><a href="#想办法让资源文件出现在-jar-包同级目录下" class="headerlink" title="想办法让资源文件出现在 jar 包同级目录下"></a>想办法让资源文件出现在 jar 包同级目录下</h2><p>既然无法读取 jar 包内部的文件，那可以转变思路，使资源文件出现在 jar 包的同级目录下，然后可以获取 jar 包的路径，从而获得资源文件的路径。</p>
 <p>由于我的项目是多模块，所以我把资源文件放在项目根目录下，同主模块处在同级。这样打包以后，资源文件不会被打包进 jar 包内，而是和主模块同级。然后通过 Docker 把资源文件移动到 jar 包所在的目录下，这样就可以轻松访问到资源文件了。</p>
