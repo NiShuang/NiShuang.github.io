@@ -9,11 +9,19 @@
     <script src="https://cdn.muicss.com/mui-0.9.41/js/mui.min.js"></script>
   </head>
 <body>
+<div class="mui-container-fluid" id="panel0">
+  <div class="mui-row">
+        <div class="mui-col-md-5"></div>
+    <div class="mui-col-md-2">
 <div class="mui-select" onchange="changeSelect()">
     <select id="select">
       <option value="panel0">亚洲</option>
       <option value="panel1">欧美及其他</option>
     </select>
+</div>
+</div>
+        <div class="mui-col-md-5"></div>
+</div>
 </div>
 <div class="mui-container-fluid" id="panel0">
   <div class="mui-row">
@@ -31,7 +39,8 @@
   </div>
   <div class="mui-row">
     <div class="mui-col-md-6">	<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1709_RC01/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"insta360","geo":"AE","time":"today 3-m"},{"keyword":"gopro","geo":"AE","time":"today 3-m"},{"keyword":"dji","geo":"AE","time":"today 3-m"},{"keyword":"ricoh","geo":"AE","time":"today 3-m"},{"keyword":"garmin","geo":"AE","time":"today 3-m"}],"category":0,"property":""}, {"exploreQuery":"date=today%203-m&geo=AE&q=insta360,gopro,dji,ricoh,garmin","guestPath":"https://trends.google.com:443/trends/embed/"}); </script></div>
-    <div class="mui-col-md-6"><iframe src="https://datalab.naver.com/keyword/trendResult.naver?hashKey=N_8398c42f9a039c5cc14e5a370e8bb70b"></iframe></div>
+    <div class="mui-col-md-6">  <a class="mui-btn mui-btn--primary" href="https://datalab.naver.com/keyword/trendResult.naver?hashKey=N_8398c42f9a039c5cc14e5a370e8bb70b">跳转至 韩国 NAVER DataLab</a>
+</div>
   </div>
 </div>
 
@@ -55,15 +64,15 @@
   </div>
   <div class="mui-row">
     <div class="mui-col-md-6"><script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1709_RC01/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"insta360","geo":"CH","time":"today 3-m"},{"keyword":"gopro fusion","geo":"CH","time":"today 3-m"},{"keyword":"samsung gear 360","geo":"CH","time":"today 3-m"},{"keyword":"ricoh theta","geo":"CH","time":"today 3-m"},{"keyword":"garmin virb","geo":"CH","time":"today 3-m"}],"category":0,"property":""}, {"exploreQuery":"date=today%203-m&geo=CH&q=insta360,gopro%20fusion,samsung%20gear%20360,ricoh%20theta,garmin%20virb","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-</div>
+    </div>
     <div class="mui-col-md-6"><script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1709_RC01/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"insta360","geo":"BR","time":"today 3-m"},{"keyword":"gopro fusion","geo":"BR","time":"today 3-m"},{"keyword":"samsung gear 360","geo":"BR","time":"today 3-m"},{"keyword":"ricoh theta","geo":"BR","time":"today 3-m"},{"keyword":"mi 360","geo":"BR","time":"today 3-m"}],"category":0,"property":""}, {"exploreQuery":"date=today%203-m&geo=BR&q=insta360,gopro%20fusion,samsung%20gear%20360,ricoh%20theta,mi%20360","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-div>
+    </div>
   </div>
 </div>
 </body>
 <script type="text/javascript">
 	function changeSelect(){
-	    var obj = document.getElementById('select'); //定位id
+	  var obj = document.getElementById('select'); //定位id
 		var index = obj.selectedIndex; // 选中索引
 		var value = obj.options[index].value; 
 		console.log(value)
