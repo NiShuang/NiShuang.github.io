@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cielni.com/"/>
-  <updated>2018-12-15T08:27:00.335Z</updated>
+  <updated>2019-02-05T13:42:33.770Z</updated>
   <id>http://cielni.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mysql 中 null 的查询问题</title>
+    <link href="http://cielni.com/2019/02/05/mysql-null/"/>
+    <id>http://cielni.com/2019/02/05/mysql-null/</id>
+    <published>2019-02-05T10:43:25.000Z</published>
+    <updated>2019-02-05T13:42:33.770Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="lt-gt-与-查询不到-null"><a href="#lt-gt-与-查询不到-null" class="headerlink" title="&lt;&gt; 与 != 查询不到 null"></a>&lt;&gt; 与 != 查询不到 null</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 查询结果中不包括 null</div><div class="line">SELECT id FROM table where value &lt;&gt; 1 </div><div class="line">SELECT id FROM table where value != 1 </div><div class="line"></div><div class="line">// 查询结果中包括 null</div><div class="line">SELECT id FROM table where value is not 1</div></pre></td></tr></table></figure><h3 id="查询-null-需要用-is-和-is-not"><a href="#查询-null-需要用-is-和-is-not" class="headerlink" title="查询 null 需要用 is 和 is not"></a>查询 null 需要用 is 和 is not</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 查询影响不了 null</div><div class="line">SELECT id FROM table where value != null </div><div class="line"></div><div class="line">// 查询影响 null</div><div class="line">SELECT id FROM table where value is not null</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;lt-gt-与-查询不到-null&quot;&gt;&lt;a href=&quot;#lt-gt-与-查询不到-null&quot; class=&quot;headerlink&quot; title=&quot;&amp;lt;&amp;gt; 与 != 查询不到 null&quot;&gt;&lt;/a&gt;&amp;lt;&amp;gt; 与 != 查询不到 null&lt;/h3&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="后端笔记" scheme="http://cielni.com/categories/%E5%90%8E%E7%AB%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据库" scheme="http://cielni.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 jar 包运行项目时的资源文件定位问题</title>
@@ -529,30 +554,6 @@
     
     
       <category term="电影" scheme="http://cielni.com/tags/%E7%94%B5%E5%BD%B1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决移动端网页上传图片自动旋转的问题</title>
-    <link href="http://cielni.com/2017/05/27/photo-rotating/"/>
-    <id>http://cielni.com/2017/05/27/photo-rotating/</id>
-    <published>2017-05-27T12:49:29.000Z</published>
-    <updated>2017-10-30T05:09:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>之前在开发微信公众号的时候，遇到有一个需求是需要允许用户在移动端的网页上传图片。然而在初步开发后遇到一个bug：大多数情况下，用户上传的照片显示出来都会被旋转90度或者180度。<br>比如手机中选择的图片是这样子：<br><img src="http://i4.buimg.com/588926/3426772102bd14c4.png" alt=""><br>而用户上传以后显示出来的照片是这些样子：<br><img src="http://i1.piimg.com/588926/33c84cd831b36546.png" alt=""><br><img src="http://i1.piimg.com/588926/6f74aeb543a6b26e.png" alt=""><br><img src="http://i1.piimg.com/588926/4036ad33d2d8afb9.png" alt=""><br><a id="more"></a><br>当时由于时间紧急，产品带着这个bug就直接上线给内部人员使用了，结果后台看到的照片四个角度的都有，看的我头都歪了。</p><h2 id="Exif-js简介"><a href="#Exif-js简介" class="headerlink" title="Exif.js简介"></a>Exif.js简介</h2><p>后来我在网上找到了这个Exif.js库：<a href="http://code.ciaoca.com/javascript/exif-js/" target="_blank" rel="external">Exif.js 读取图像的元数据</a></p><blockquote><p>Exif.js 提供了 JavaScript 读取图像的原始数据的功能扩展，例如：拍照方向、相机设备型号、拍摄时间、ISO 感光度、GPS 地理位置等数据。</p></blockquote><p>实际上用手机拍摄的照片文件中都会存有许多拍摄信息比如设备型号、拍摄时间、拍摄地点等等。通过Exif.js库我们可以从照片中方便地获取这些信息。</p><h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>所以接下来的思路就是在用户上传图片的时候对使用Exif.js读取图片的拍摄方向，根据用户的拍摄方向对图像进行相应的旋转，使之正常显示。</p><p>通过Exif.js我们可以得到图像的拍摄方向<em>Orientation</em>，它是一个整数，这个参数的值和对应的意义以及调整的方式如下表所示:</p><table><thead><tr><th>Orientation</th><th style="text-align:right">原图</th><th style="text-align:center">调整方式</th></tr></thead><tbody><tr><td>1</td><td style="text-align:right"><img src="http://i4.buimg.com/588926/3426772102bd14c4.png" alt=""></td><td style="text-align:center">不变</td></tr><tr><td>2</td><td style="text-align:right"><img src="http://i1.piimg.com/588926/2e1c78a3f483810b.png" alt=""></td><td style="text-align:center">左右翻转</td></tr><tr><td>3</td><td style="text-align:right"><img src="http://i1.piimg.com/588926/6f74aeb543a6b26e.png" alt=""></td><td style="text-align:center">顺（逆）时针旋转180°</td></tr><tr><td>4</td><td style="text-align:right"><img src="http://i1.piimg.com/588926/88750989de6b9eb1.png" alt=""></td><td style="text-align:center">上下翻转</td></tr><tr><td>5</td><td style="text-align:right"><img src="http://i1.piimg.com/588926/933e40faf86a6b07.png" alt=""></td><td style="text-align:center">顺时针旋转90°，左右翻转</td></tr><tr><td>6</td><td style="text-align:right"><img src="http://i1.piimg.com/588926/4036ad33d2d8afb9.png" alt=""></td><td style="text-align:center">顺时针旋转90°</td></tr><tr><td>7</td><td style="text-align:right"><img src="http://i1.piimg.com/588926/3b9cb58104cb0414.png" alt=""></td><td style="text-align:center">逆时针旋转90°，左右翻转</td></tr><tr><td>8</td><td style="text-align:right"><img src="http://i1.piimg.com/588926/33c84cd831b36546.png" alt=""></td><td style="text-align:center">逆时针旋转90°</td></tr></tbody></table><p>值得注意的是，在这个bug中我们只会遇到Orientation值为1，3，6，8的情况，因为我们只存在拍摄角度的问题，不存在翻转问题。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>最后附上代码，代码中使用canvas对照片进行旋转处理，这里就不赘述了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">$uploaderInput.on(<span class="string">"change"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> src, url = <span class="built_in">window</span>.URL || <span class="built_in">window</span>.webkitURL || <span class="built_in">window</span>.mozURL, files = e.target.files;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = files.length; i &lt; len; ++i) &#123;</div><div class="line">        <span class="keyword">var</span> file = files[i];</div><div class="line">        <span class="comment">// Ensure it's an image</span></div><div class="line">        <span class="keyword">if</span>(file.type.match(<span class="regexp">/image.*/</span>)) &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'An image has been loaded'</span>);</div><div class="line">            <span class="comment">// Load the image</span></div><div class="line">            <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</div><div class="line">            reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">readerEvent</span>) </span>&#123;</div><div class="line">                <span class="keyword">var</span> image = <span class="keyword">new</span> Image();</div><div class="line">                image.onload = <span class="function"><span class="keyword">function</span> (<span class="params">imageEvent</span>) </span>&#123;</div><div class="line">                    EXIF.getData(image, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                        EXIF.getAllTags(<span class="keyword">this</span>);</div><div class="line">                        Orientation = EXIF.getTag(<span class="keyword">this</span>, <span class="string">'Orientation'</span>);</div><div class="line">                    &#125;);</div><div class="line">                    <span class="keyword">var</span> cxt = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line">                    <span class="keyword">if</span>(Orientation == <span class="number">3</span>) &#123;</div><div class="line">                        canvas.width = width;</div><div class="line">                        canvas.height = height;</div><div class="line">                        cxt.rotate(<span class="built_in">Math</span>.PI);</div><div class="line">                        cxt.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, -width, -height);</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(Orientation == <span class="number">8</span>) &#123;</div><div class="line">                        canvas.width = height;</div><div class="line">                        canvas.height = width;</div><div class="line">                        cxt.rotate(<span class="built_in">Math</span>.PI * <span class="number">3</span> / <span class="number">2</span>);</div><div class="line">                        cxt.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, -width, height);</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(Orientation == <span class="number">6</span>) &#123;</div><div class="line">                        canvas.width = height;</div><div class="line">                        canvas.height = width;</div><div class="line">                        cxt.rotate(<span class="built_in">Math</span>.PI / <span class="number">2</span>);</div><div class="line">                        cxt.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, width, -height);</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span> &#123;</div><div class="line">                        canvas.width = width;</div><div class="line">                        canvas.height = height;</div><div class="line">                        cxt.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, width, height);</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">var</span> dataUrl = canvas.toDataURL(<span class="string">'image/jpeg'</span>);</div><div class="line">                    <span class="keyword">var</span> resizedImage = dataURLToBlob(dataUrl);</div><div class="line">                    $.event.trigger(&#123;</div><div class="line">                        type: <span class="string">"imageResized"</span>,</div><div class="line">                        blob: resizedImage,</div><div class="line">                        url: dataUrl</div><div class="line">                    &#125;);</div><div class="line">                &#125;;</div><div class="line">                image.src = readerEvent.target.result;</div><div class="line">            &#125;;</div><div class="line">            reader.readAsDataURL(file);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;之前在开发微信公众号的时候，遇到有一个需求是需要允许用户在移动端的网页上传图片。然而在初步开发后遇到一个bug：大多数情况下，用户上传的照片显示出来都会被旋转90度或者180度。&lt;br&gt;比如手机中选择的图片是这样子：&lt;br&gt;&lt;img src=&quot;http://i4.buimg.com/588926/3426772102bd14c4.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;而用户上传以后显示出来的照片是这些样子：&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/588926/33c84cd831b36546.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/588926/6f74aeb543a6b26e.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/588926/4036ad33d2d8afb9.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端笔记" scheme="http://cielni.com/categories/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="实习" scheme="http://cielni.com/tags/%E5%AE%9E%E4%B9%A0/"/>
-    
-      <category term="js" scheme="http://cielni.com/tags/js/"/>
     
   </entry>
   
