@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cielni.com/"/>
-  <updated>2019-02-05T13:42:33.770Z</updated>
+  <updated>2019-07-18T14:16:54.296Z</updated>
   <id>http://cielni.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据库大表添加字段的方法</title>
+    <link href="http://cielni.com/2019/07/18/databse-big-table-add-filed/"/>
+    <id>http://cielni.com/2019/07/18/databse-big-table-add-filed/</id>
+    <published>2019-07-18T14:15:06.000Z</published>
+    <updated>2019-07-18T14:16:54.296Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>一般情况下，一百万以下数据量的表可以直接进行字段添加操作。而如果数据表的大小达到几百万几千万甚至更多时，添加一个字段会引起数据库卡死。经查阅，数据库大表添加字段有以下两个方法。</p><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><ol><li><p>创建一个新表，复制旧表的结构（包含索引）</p></li><li><p>给新表加上添加需要新增的字段</p></li><li><p>把旧表的数据复制到新表，注意需要分批循环插入，不然容易卡死</p></li><li><p>删除旧表，重命名新表的名字为旧表的名字</p></li></ol><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>使用 Percona 的在线工具在线修改表结构</p><p>教程： <a href="https://blog.csdn.net/hpulfc/article/details/87938724" target="_blank" rel="external">https://blog.csdn.net/hpulfc/article/details/87938724</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;一般情况下，一百万以下数据量的表可以直接进行字段添加操作。而如果数据表的大小达到几百万几千万甚至更多时，添加一个字段会引起数据库卡死。经查阅
+      
+    
+    </summary>
+    
+      <category term="后端笔记" scheme="http://cielni.com/categories/%E5%90%8E%E7%AB%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据库" scheme="http://cielni.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>mysql 中 null 的查询问题</title>
@@ -120,9 +145,9 @@
     
       <category term="java" scheme="http://cielni.com/tags/java/"/>
     
-      <category term="实习" scheme="http://cielni.com/tags/%E5%AE%9E%E4%B9%A0/"/>
-    
       <category term="数据库" scheme="http://cielni.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="实习" scheme="http://cielni.com/tags/%E5%AE%9E%E4%B9%A0/"/>
     
   </entry>
   
@@ -528,32 +553,6 @@
       <category term="爬虫" scheme="http://cielni.com/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="实习" scheme="http://cielni.com/tags/%E5%AE%9E%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>致雪野小姐（言叶之庭）</title>
-    <link href="http://cielni.com/2017/05/28/the-garden-of-words/"/>
-    <id>http://cielni.com/2017/05/28/the-garden-of-words/</id>
-    <published>2017-05-27T18:02:38.000Z</published>
-    <updated>2017-10-30T05:00:59.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>雪野小姐</p><p>请忘记我刚才的话吧</p><p>我其实根本不喜欢你 你从一开始就似乎 不招人喜欢</p><p>一大早就喝啤酒 用莫名其妙的短歌来糊弄人</p><p>自己的事只字不提 却不停套出别人的心思</p><a id="more"></a> <p>你早就知道我们是师生关系了吧 也太狡猾了</p><p>如果知道你是老师 我也不会提起制鞋的事了</p><p>反正也做不到 不可能实现</p><p>为什么不这么告诉我呢</p><p>是不是觉得</p><p>小孩子的梦话随便敷衍一下就行了</p><p>我再憧憬什么 再爱慕谁 也无法传达 不过一厢情愿</p><p>你从一开始就知道了 那就说清楚啊</p><p>真碍眼 小孩子就该乖乖去上学 说你讨厌我</p><p>你啊 你就一直那样 总对重要的事只字不提 </p><p>然后摆出如无其事的表情 一直孤单一人 度过一生吧!</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;雪野小姐&lt;/p&gt;
-&lt;p&gt;请忘记我刚才的话吧&lt;/p&gt;
-&lt;p&gt;我其实根本不喜欢你 你从一开始就似乎 不招人喜欢&lt;/p&gt;
-&lt;p&gt;一大早就喝啤酒 用莫名其妙的短歌来糊弄人&lt;/p&gt;
-&lt;p&gt;自己的事只字不提 却不停套出别人的心思&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="光影笔记" scheme="http://cielni.com/categories/%E5%85%89%E5%BD%B1%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="电影" scheme="http://cielni.com/tags/%E7%94%B5%E5%BD%B1/"/>
     
   </entry>
   

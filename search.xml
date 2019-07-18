@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据库大表添加字段的方法]]></title>
+    <url>%2F2019%2F07%2F18%2Fdatabse-big-table-add-filed%2F</url>
+    <content type="text"><![CDATA[问题一般情况下，一百万以下数据量的表可以直接进行字段添加操作。而如果数据表的大小达到几百万几千万甚至更多时，添加一个字段会引起数据库卡死。经查阅，数据库大表添加字段有以下两个方法。 方法一 创建一个新表，复制旧表的结构（包含索引） 给新表加上添加需要新增的字段 把旧表的数据复制到新表，注意需要分批循环插入，不然容易卡死 删除旧表，重命名新表的名字为旧表的名字 方法二使用 Percona 的在线工具在线修改表结构 教程： https://blog.csdn.net/hpulfc/article/details/87938724]]></content>
+      <categories>
+        <category>后端笔记</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql 中 null 的查询问题]]></title>
     <url>%2F2019%2F02%2F05%2Fmysql-null%2F</url>
     <content type="text"><![CDATA[&lt;&gt; 与 != 查询不到 null123456// 查询结果中不包括 nullSELECT id FROM table where value &lt;&gt; 1 SELECT id FROM table where value != 1 // 查询结果中包括 nullSELECT id FROM table where value is not 1 查询 null 需要用 is 和 is not12345// 查询影响不了 nullSELECT id FROM table where value != null // 查询影响 nullSELECT id FROM table where value is not null]]></content>
@@ -45,8 +56,8 @@
       </categories>
       <tags>
         <tag>java</tag>
-        <tag>实习</tag>
         <tag>数据库</tag>
+        <tag>实习</tag>
       </tags>
   </entry>
   <entry>
