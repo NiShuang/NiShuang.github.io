@@ -475,6 +475,9 @@
       
         
           <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>有一张数据库表，记录了一些抖音视频每小时的播放量与点赞量，每个视频每小时都会产生一条记录。现在需要查出每个视频最新的一条记录，希望通过一条sql语句搞定。第一反应就是对 video_id 进行 Group By ，然后想办法取出每一组中 created_time 最新的那条数据。在最后加 Order By 显然是行不通的，因为 Order By 是对 Group By 的结果进行排序。</p>
+<h2 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h2><p>关于这种问题，网上有很多错误的解决方法，思路是先通过一个子查询把数据按照 created_time 倒序排序，然后再进行 Group By，sql语句如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM</div><div class="line">(SELECT * FROM douyin_official_video WHERE ORDER BY created_time DESC) t</div><div class="line">GROUP BY video_id</div></pre></td></tr></table></figure>
+<p>这个方法的成立需要一个前提，就是MySQL 在 Group By 后是按照当前数据排列顺序选择第一条记录的。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/17/mysql-group-by-select/#more" rel="contents">
