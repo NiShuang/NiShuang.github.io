@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Java 中 YYYY-MM-dd 在跨年时的致命问题]]></title>
     <url>%2F2020%2F01%2F10%2Fjava-date-format%2F</url>
-    <content type="text"><![CDATA[最近在V站https://link.zhihu.com/?target=http%3A//v2ex.com/t/633650和知乎https://zhuanlan.zhihu.com/p/100648038都看到一个讨论很有意思，故做一下笔记。 问题描述在跨年期间，如果在日期格式化的时候使用YYYY来格式化年份，则可能会出现下图所示的bug： 根本原因YYYY是week-based-year，表示当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，那么这周就算入下一年。所以2019年12月31日那天在这种表述方式下就已经是 2020 年了。而当使用yyyy或者uuuu的时候，就还是 2019 年。 总结u yeary year-of-eraY week-based-year，表示当天所在的周属于的年份 u 与 y 在公元后的年份表示没有区别，在公元前的年份表示有正负号的差别。所以建议平时时期格式化的时候使用 yyyy-MM-dd 或者 uuuu-MM-dd。 参考资料 你今天因为 YYYY-MM-dd 被提 BUG 了吗 昨天你用的 YYYY-MM-dd 被同事锤了吗？ 文章标题：Java 中 YYYY-MM-dd 在跨年时的致命问题文章作者：Ciel Ni文章链接：http://www.cielni.com/2020/01/10/java-date-format/有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！]]></content>
+    <content type="text"><![CDATA[最近在V站和知乎都看到一个讨论很有意思，故做一下笔记。 问题描述在跨年期间，如果在日期格式化的时候使用 YYYY 来格式化年份，则可能会出现下图所示的bug： 根本原因YYYY 在官方文档中的解释是 week-based-year，表示当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，那么这周就算入下一年。所以2019年12月31日那天在这种表述方式下就已经是 2020 年了。而当使用 yyyy 或者 uuuu 的时候，就还是 2019 年。 总结123u yeary year-of-eraY week-based-year，表示当天所在的周属于的年份 u 与 y 在公元后的年份表示没有区别，在公元前的年份表示有正负号的差别。所以建议平时时期格式化的时候使用 yyyy-MM-dd 或者 uuuu-MM-dd。 参考资料 你今天因为 YYYY-MM-dd 被提 BUG 了吗 昨天你用的 YYYY-MM-dd 被同事锤了吗？ Class DateTimeFormatter 官方文档 文章标题：Java 中 YYYY-MM-dd 在跨年时的致命问题文章作者：Ciel Ni文章链接：http://www.cielni.com/2020/01/10/java-date-format/有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！]]></content>
       <categories>
         <category>后端笔记</category>
       </categories>
@@ -79,9 +79,9 @@
         <category>java笔记</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>java</tag>
         <tag>实习</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>

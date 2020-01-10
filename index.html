@@ -474,23 +474,15 @@
 
       
         
-          
-            <p>最近在V站<a href="https://link.zhihu.com/?target=http%3A//v2ex.com/t/633650和知乎https://zhuanlan.zhihu.com/p/100648038都看到一个讨论很有意思，故做一下笔记。" target="_blank" rel="external">https://link.zhihu.com/?target=http%3A//v2ex.com/t/633650和知乎https://zhuanlan.zhihu.com/p/100648038都看到一个讨论很有意思，故做一下笔记。</a></p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在跨年期间，如果在日期格式化的时候使用YYYY来格式化年份，则可能会出现下图所示的bug：<br><img src="https://pic3.zhimg.com/80/v2-d503911afd31fedacd98605e624426de_hd.jpg" alt="BUG"></p>
-<h2 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h2><p>YYYY是week-based-year，<strong>表示当天所在的周属于的年份</strong>，一周从周日开始，周六结束，只要本周跨年，那么这周就算入下一年。所以2019年12月31日那天在这种表述方式下就已经是 2020 年了。而当使用yyyy或者uuuu的时候，就还是 2019 年。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>u year<br>y year-of-era<br>Y week-based-year，表示当天所在的周属于的年份</p>
-<p>u 与 y 在公元后的年份表示没有区别，在公元前的年份表示有正负号的差别。所以建议平时时期格式化的时候使用 yyyy-MM-dd 或者 uuuu-MM-dd。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://link.zhihu.com/?target=http%3A//v2ex.com/t/633650" target="_blank" rel="external">你今天因为 YYYY-MM-dd 被提 BUG 了吗
-</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/100648038" target="_blank" rel="external">昨天你用的 YYYY-MM-dd 被同事锤了吗？</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>文章标题：<a href="http://www.cielni.com/2020/01/10/java-date-format/" target="_blank" rel="external">Java 中 YYYY-MM-dd 在跨年时的致命问题</a><br>文章作者：<a href="http://www.cielni.com/about/" target="_blank" rel="external">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2020/01/10/java-date-format/" target="_blank" rel="external">http://www.cielni.com/2020/01/10/java-date-format/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
-</blockquote>
-
-          
+          <p>最近在<a href="https://v2ex.com/t/633650" target="_blank" rel="external">V站</a>和<a href="https://zhuanlan.zhihu.com/p/100648038" target="_blank" rel="external">知乎</a>都看到一个讨论很有意思，故做一下笔记。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在跨年期间，如果在日期格式化的时候使用 YYYY 来格式化年份，则可能会出现下图所示的bug：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/10/java-date-format/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
