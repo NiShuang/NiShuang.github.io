@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[基于浏览器的人脸实时跟踪]]></title>
+    <url>%2F2020%2F03%2F07%2Fbrower-face-detect%2F</url>
+    <content type="text"><![CDATA[疫情期间，公司选择让员工进行远程办公，却又难以监督员工保证他们的工时。所以老板想出了通过摄像头配合人脸识别算法，计算一天内员工在电脑面前的时间占比。 项目的Github地址 通过浏览器开启摄像头这部分代码是在网上找的，需要兼容多种浏览器： 1234567891011121314151617181920212223242526272829303132333435363738if (navigator.mediaDevices === undefined) &#123; navigator.mediaDevices = &#123;&#125;;&#125;if (navigator.mediaDevices.getUserMedia === undefined) &#123; avigator.mediaDevices.getUserMedia = function (constraints) &#123; // 首先，如果有getUserMedia的话，就获得它 var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia; // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口 if (!getUserMedia) &#123; return Promise.reject(new Error(&apos;getUserMedia is not implemented in this browser&apos;)); &#125; // 否则，为老的navigator.getUserMedia方法包裹一个Promise return new Promise(function (resolve, reject) &#123; getUserMedia.call(navigator, constraints, resolve, reject); &#125;); &#125;&#125;const constraints = &#123; video: true, audio: false&#125;;let promise = navigator.mediaDevices.getUserMedia(constraints);promise.then(stream =&gt; &#123; let v = document.getElementById(&apos;v&apos;); // 旧的浏览器可能没有srcObject if (&quot;srcObject&quot; in v) &#123; v.srcObject = stream; &#125; else &#123; // 防止再新的浏览器里使用它，应为它已经不再支持了 v.src = window.URL.createObjectURL(stream); &#125; v.onloadedmetadata = function (e) &#123; v.play(); &#125;;&#125;).catch(err =&gt; &#123; console.error(err.name + &quot;: &quot; + err.message);&#125;) 人脸识别人脸识别使用的是Github上的一个人脸识别库 face-api.js 。face-api.js可以识别出视频流中人脸的轮廓和表情，调整识别精度等，Github上有详细的使用教程。 123456789101112131415161718192021// 初始化faceapi.nets.ssdMobilenetv1.loadFromUri(dir),// faceapi.nets.tinyFaceDetector.loadFromUri(dir),faceapi.nets.faceLandmark68Net.loadFromUri(dir),// faceapi.nets.faceRecognitionNet.loadFromUri(dir),// faceapi.nets.faceExpressionNet.loadFromUri(dir) var video = document.getElementById(&apos;video&apos;);let canvas = faceapi.createCanvasFromMedia(video);document.body.append(canvas);faceapi.matchDimensions(canvas, displaySize);// const options = new faceapi.TinyFaceDetectorOptions(&#123; scoreThreshold: 0.2, inputSize: 608 &#125;);const options = new faceapi.SsdMobilenetv1Options(&#123; minConfidence: 0.5, maxResults: 3 &#125;);let detections = await faceapi.detectAllFaces(video, options).withFaceLandmarks();// 在画面中显示人脸轮廓描边const resizedDetections = faceapi.resizeResults(detections, displaySize);canvas.getContext(&apos;2d&apos;).clearRect(0, 0, canvas.width, canvas.height);faceapi.draw.drawDetections(canvas, resizedDetections);faceapi.draw.drawFaceLandmarks(canvas, resizedDetections); 实现实时跟踪实现实时跟踪的思路就是，通过定时器，每隔1秒钟对当前的图像进行人脸识别并描边，这样间接实现了对视频的实时人脸跟踪，如果想要跟踪速度更加灵敏一点，可以把时间间隔改成0.1秒。 123456789101112131415161718192021222324252627282930video.addEventListener(&apos;play&apos;, () =&gt; &#123; console.log(&apos;play lisetner&apos;) canvas = faceapi.createCanvasFromMedia(video); document.body.append(canvas); faceapi.matchDimensions(canvas, displaySize); takePhoto(); setInterval(takePhoto,1000);&#125;);async function takePhoto()&#123; if (!faceapiReady) &#123; return; &#125; let detections = await detect(); draw(detections);&#125;async function detect() &#123; // const options = new faceapi.TinyFaceDetectorOptions(&#123; scoreThreshold: 0.2, inputSize: 608 &#125;); const options = new faceapi.SsdMobilenetv1Options(&#123; minConfidence: 0.5, maxResults: 3 &#125;); const detections = await faceapi.detectAllFaces(video, options).withFaceLandmarks(); return detections;&#125;function draw(detections) &#123; const resizedDetections = faceapi.resizeResults(detections, displaySize); canvas.getContext(&apos;2d&apos;).clearRect(0, 0, canvas.width, canvas.height); faceapi.draw.drawDetections(canvas, resizedDetections); faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);&#125; 参考资料 justadudewhohacks/face-api.js 文章标题：基于浏览器的人脸实时跟踪文章作者：Ciel Ni文章链接：http://www.cielni.com/2020/03/07/brower-face-detect/有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！]]></content>
+      <categories>
+        <category>前端笔记</category>
+      </categories>
+      <tags>
+        <tag>HTML</tag>
+        <tag>js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java 中 YYYY-MM-dd 在跨年时的致命问题]]></title>
     <url>%2F2020%2F01%2F10%2Fjava-date-format%2F</url>
     <content type="text"><![CDATA[最近在V站和知乎都看到一个讨论很有意思，故做一下笔记。 问题描述在跨年期间，如果在日期格式化的时候使用 YYYY 来格式化年份，则可能会出现下图所示的bug： 根本原因YYYY 在官方文档中的解释是 week-based-year，表示当天所在的周属于的年份，一周从周日开始，周六结束，只要本周跨年，那么这周就算入下一年。所以2019年12月31日那天在这种表述方式下就已经是 2020 年了。而当使用 yyyy 或者 uuuu 的时候，就还是 2019 年。 总结123u yeary year-of-eraY week-based-year，表示当天所在的周属于的年份 u 与 y 在公元后的年份表示没有区别，在公元前的年份表示有正负号的差别。所以建议平时时期格式化的时候使用 yyyy-MM-dd 或者 uuuu-MM-dd。 参考资料 你今天因为 YYYY-MM-dd 被提 BUG 了吗 昨天你用的 YYYY-MM-dd 被同事锤了吗？ Class DateTimeFormatter 官方文档 文章标题：Java 中 YYYY-MM-dd 在跨年时的致命问题文章作者：Ciel Ni文章链接：http://www.cielni.com/2020/01/10/java-date-format/有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！]]></content>
@@ -214,8 +226,8 @@
         <category>前端笔记</category>
       </categories>
       <tags>
-        <tag>Vue</tag>
         <tag>js</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -296,8 +308,8 @@
         <category>前端笔记</category>
       </categories>
       <tags>
-        <tag>实习</tag>
         <tag>js</tag>
+        <tag>实习</tag>
       </tags>
   </entry>
   <entry>

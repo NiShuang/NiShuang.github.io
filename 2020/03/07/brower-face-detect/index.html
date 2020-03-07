@@ -121,18 +121,18 @@
 
 
 
-  <meta name="description" content="问题背景有一张数据库表，记录了一些抖音视频每小时的播放量与点赞量，每个视频每小时都会产生一条记录。现在需要查出每个视频最新的一条记录，希望通过一条sql语句搞定。第一反应就是对 video_id 进行 Group By ，然后想办法取出每一组中 created_time 最新的那条数据。在最后加 Order By 显然是行不通的，因为 Order By 是对 Group By 的结果进行排序。 误">
-<meta name="keywords" content="数据库,MySQL">
+  <meta name="description" content="疫情期间，公司选择让员工进行远程办公，却又难以监督员工保证他们的工时。所以老板想出了通过摄像头配合人脸识别算法，计算一天内员工在电脑面前的时间占比。 项目的Github地址 通过浏览器开启摄像头这部分代码是在网上找的，需要兼容多种浏览器：">
+<meta name="keywords" content="HTML,js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL 中 Group By 后如何选择记录">
-<meta property="og:url" content="http://cielni.com/2019/08/17/mysql-group-by-select/index.html">
+<meta property="og:title" content="基于浏览器的人脸实时跟踪">
+<meta property="og:url" content="http://cielni.com/2020/03/07/brower-face-detect/index.html">
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
-<meta property="og:description" content="问题背景有一张数据库表，记录了一些抖音视频每小时的播放量与点赞量，每个视频每小时都会产生一条记录。现在需要查出每个视频最新的一条记录，希望通过一条sql语句搞定。第一反应就是对 video_id 进行 Group By ，然后想办法取出每一组中 created_time 最新的那条数据。在最后加 Order By 显然是行不通的，因为 Order By 是对 Group By 的结果进行排序。 误">
+<meta property="og:description" content="疫情期间，公司选择让员工进行远程办公，却又难以监督员工保证他们的工时。所以老板想出了通过摄像头配合人脸识别算法，计算一天内员工在电脑面前的时间占比。 项目的Github地址 通过浏览器开启摄像头这部分代码是在网上找的，需要兼容多种浏览器：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T11:28:56.507Z">
+<meta property="og:updated_time" content="2020-03-07T12:52:41.368Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL 中 Group By 后如何选择记录">
-<meta name="twitter:description" content="问题背景有一张数据库表，记录了一些抖音视频每小时的播放量与点赞量，每个视频每小时都会产生一条记录。现在需要查出每个视频最新的一条记录，希望通过一条sql语句搞定。第一反应就是对 video_id 进行 Group By ，然后想办法取出每一组中 created_time 最新的那条数据。在最后加 Order By 显然是行不通的，因为 Order By 是对 Group By 的结果进行排序。 误">
+<meta name="twitter:title" content="基于浏览器的人脸实时跟踪">
+<meta name="twitter:description" content="疫情期间，公司选择让员工进行远程办公，却又难以监督员工保证他们的工时。所以老板想出了通过摄像头配合人脸识别算法，计算一天内员工在电脑面前的时间占比。 项目的Github地址 通过浏览器开启摄像头这部分代码是在网上找的，需要兼容多种浏览器：">
 
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <link rel="canonical" href="http://cielni.com/2019/08/17/mysql-group-by-select/"/>
+  <link rel="canonical" href="http://cielni.com/2020/03/07/brower-face-detect/"/>
 
 
 
@@ -151,7 +151,7 @@
   };
 </script>
 
-  <title>MySQL 中 Group By 后如何选择记录 | 年轮说 | Ciel Ni</title>
+  <title>基于浏览器的人脸实时跟踪 | 年轮说 | Ciel Ni</title>
   
 
 
@@ -378,7 +378,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cielni.com/2019/08/17/mysql-group-by-select/">
+    <link itemprop="mainEntityOfPage" href="http://cielni.com/2020/03/07/brower-face-detect/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ciel Ni">
@@ -395,7 +395,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MySQL 中 Group By 后如何选择记录
+          <h1 class="post-title" itemprop="name headline">基于浏览器的人脸实时跟踪
               
             
           </h1>
@@ -420,7 +420,7 @@
                 
               
 
-              <time title="创建时间：2019-08-17 19:19:15" itemprop="dateCreated datePublished" datetime="2019-08-17T19:19:15+08:00">2019-08-17</time>
+              <time title="创建时间：2020-03-07 19:54:41" itemprop="dateCreated datePublished" datetime="2020-03-07T19:54:41+08:00">2020-03-07</time>
             
 
             
@@ -438,7 +438,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端笔记/" itemprop="url" rel="index"><span itemprop="name">后端笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端笔记/" itemprop="url" rel="index"><span itemprop="name">前端笔记</span></a></span>
 
                 
                 
@@ -480,31 +480,20 @@
       
 
       
-        <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>有一张数据库表，记录了一些抖音视频每小时的播放量与点赞量，每个视频每小时都会产生一条记录。现在需要查出每个视频最新的一条记录，希望通过一条sql语句搞定。第一反应就是对 video_id 进行 Group By ，然后想办法取出每一组中 created_time 最新的那条数据。在最后加 Order By 显然是行不通的，因为 Order By 是对 Group By 的结果进行排序。</p>
-<h2 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h2><p>关于这种问题，网上有很多错误的解决方法，思路是先通过一个子查询把数据按照 created_time 倒序排序，然后再进行 Group By，sql语句如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM</div><div class="line">(SELECT * FROM douyin_official_video WHERE ORDER BY created_time DESC) t</div><div class="line">GROUP BY video_id</div></pre></td></tr></table></figure>
-<p>这个方法的成立需要一个前提，就是MySQL 在 Group By 后是按照当前数据排列顺序选择第一条记录的。</p>
-<a id="more"></a> 
-<p>然而我查阅了<a href="https://dev.mysql.com/doc/refman/5.7/en/group-by-handling.html" target="_blank" rel="external">MySQL 5.7 版本的官方文档</a></p>
-<blockquote>
-<p>If ONLY_FULL_GROUP_BY is disabled, a MySQL extension to the standard SQL use of GROUP BY permits the select list, HAVING condition, or ORDER BY list to refer to nonaggregated columns even if the columns are not functionally dependent on GROUP BY columns. <strong>This causes MySQL to accept the preceding query. In this case, the server is free to choose any value from each group, so unless they are the same, the values chosen are nondeterministic, which is probably not what you want. Furthermore, the selection of values from each group cannot be influenced by adding an ORDER BY clause.</strong></p>
-</blockquote>
-<p>这段话总结一下就是， 在 ONLY_FULL_GROUP_BY 这个配置关闭的情况下，MySQL 从 Group 中选择记录的方式是随意的，无论预先对源数据如何进行 Order By，都不会对选择有任何影响。</p>
-<p>ONLY_FULL_GROUP_BY 这个配置决定了能否在 SELECT 后的字段中出现 Group By 后没有的字段。ONLY_FULL_GROUP_BY 为 disabled时，允许SELECT 后的字段中出现 Group By 后没有的字段；ONLY_FULL_GROUP_BY 为 enable 时， 只能 SELECT 在 Group By 后出现的字段。而在大多数情况下，为了减轻程序员编写sql语句的压力，ONLY_FULL_GROUP_BY 都会建议设为 disabled。</p>
-<p>我的数据库 ONLY_FULL_GROUP_BY 是设为 disabled的，我跑了上述方法，事实证明这个方法确实是无效的，无论我预先如何排序，从 Group 中选择出来的记录都是 id 最小的那一条。但是我也不能说 Group By 以后就是选择 id 最小的那一条，因为文档中明确说明了是 free to choose，我们无法去做其他猜测。也许在有自增主键的情况下，是取主键最小的那一条，但是这个目前无法百分之百证实。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>因为在这个表中 created_time 最新也就意味着 id 最大，所以我变通一下，把问题简化为取每个视频中 id 最大的一条记录。这个问题可以通过聚合函数 MAX 先把每个视频的最大 id 查出来，然后在对这些 id 查询记录。sql语句如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM douyin_official_video WHERE id IN </div><div class="line">(SELECT MAX(id) FROM douyin_official_video GROUP BY video_id) t</div></pre></td></tr></table></figure></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在数据库 ONLY_FULL_GROUP_BY 是 disabled 的情况下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM table GROUP BY &lt;字段 1&gt;</div></pre></td></tr></table></figure>
-<p>随机选择一条</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SELECT * FROM (SELECT * FROM table ORDER BY &lt;字段 2&gt;) GROUP BY &lt;字段 1&gt;</div></pre></td></tr></table></figure>
-<p>随机选择一条，而且子查询里面的 ORDER BY 会被优化掉。</p>
+        <p>疫情期间，公司选择让员工进行远程办公，却又难以监督员工保证他们的工时。所以老板想出了通过摄像头配合人脸识别算法，计算一天内员工在电脑面前的时间占比。</p>
+<p><a href="https://github.com/NiShuang/browser_face_detect" target="_blank" rel="external">项目的Github地址</a></p>
+<h2 id="通过浏览器开启摄像头"><a href="#通过浏览器开启摄像头" class="headerlink" title="通过浏览器开启摄像头"></a>通过浏览器开启摄像头</h2><p>这部分代码是在网上找的，需要兼容多种浏览器：<br><a id="more"></a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">if (navigator.mediaDevices === undefined) &#123;</div><div class="line">	navigator.mediaDevices = &#123;&#125;;</div><div class="line">&#125;</div><div class="line">if (navigator.mediaDevices.getUserMedia === undefined) &#123;</div><div class="line">	avigator.mediaDevices.getUserMedia = function (constraints) &#123;</div><div class="line">    // 首先，如果有getUserMedia的话，就获得它</div><div class="line">	    var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;</div><div class="line">	 </div><div class="line">	    // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口</div><div class="line">	    if (!getUserMedia) &#123;</div><div class="line">	        return Promise.reject(new Error(&apos;getUserMedia is not implemented in this browser&apos;));</div><div class="line">	    &#125;</div><div class="line">	 </div><div class="line">	    // 否则，为老的navigator.getUserMedia方法包裹一个Promise</div><div class="line">	     return new Promise(function (resolve, reject) &#123;</div><div class="line">	         getUserMedia.call(navigator, constraints, resolve, reject);</div><div class="line">	     &#125;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">const constraints = &#123;</div><div class="line">    video: true,</div><div class="line">    audio: false</div><div class="line">&#125;;</div><div class="line">let promise = navigator.mediaDevices.getUserMedia(constraints);</div><div class="line">promise.then(stream =&gt; &#123;</div><div class="line">    let v = document.getElementById(&apos;v&apos;);</div><div class="line">    // 旧的浏览器可能没有srcObject</div><div class="line">    if (&quot;srcObject&quot; in v) &#123;</div><div class="line">         v.srcObject = stream;</div><div class="line">    &#125; else &#123;</div><div class="line">     	// 防止再新的浏览器里使用它，应为它已经不再支持了</div><div class="line">         v.src = window.URL.createObjectURL(stream);</div><div class="line">    &#125;</div><div class="line">    v.onloadedmetadata = function (e) &#123;</div><div class="line">        v.play();</div><div class="line">    &#125;;&#125;).catch(err =&gt; &#123;</div><div class="line">        console.error(err.name + &quot;: &quot; + err.message);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="人脸识别"><a href="#人脸识别" class="headerlink" title="人脸识别"></a>人脸识别</h2><p>人脸识别使用的是Github上的一个人脸识别库 <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank" rel="external">face-api.js</a> 。face-api.js可以识别出视频流中人脸的轮廓和表情，调整识别精度等，Github上有详细的使用教程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">// 初始化</div><div class="line">faceapi.nets.ssdMobilenetv1.loadFromUri(dir),</div><div class="line">// faceapi.nets.tinyFaceDetector.loadFromUri(dir),</div><div class="line">faceapi.nets.faceLandmark68Net.loadFromUri(dir),</div><div class="line">// faceapi.nets.faceRecognitionNet.loadFromUri(dir),</div><div class="line">// faceapi.nets.faceExpressionNet.loadFromUri(dir)</div><div class="line">            </div><div class="line">var video = document.getElementById(&apos;video&apos;);</div><div class="line">let canvas = faceapi.createCanvasFromMedia(video);</div><div class="line">document.body.append(canvas);</div><div class="line">faceapi.matchDimensions(canvas, displaySize);</div><div class="line"></div><div class="line">// const options = new faceapi.TinyFaceDetectorOptions(&#123; scoreThreshold: 0.2, inputSize: 608 &#125;);</div><div class="line">const options = new faceapi.SsdMobilenetv1Options(&#123; minConfidence: 0.5, maxResults: 3 &#125;);</div><div class="line">let detections = await faceapi.detectAllFaces(video, options).withFaceLandmarks();</div><div class="line"></div><div class="line">// 在画面中显示人脸轮廓描边</div><div class="line">const resizedDetections = faceapi.resizeResults(detections, displaySize);</div><div class="line">canvas.getContext(&apos;2d&apos;).clearRect(0, 0, canvas.width, canvas.height);</div><div class="line">faceapi.draw.drawDetections(canvas, resizedDetections);</div><div class="line">faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);</div></pre></td></tr></table></figure>
+<h2 id="实现实时跟踪"><a href="#实现实时跟踪" class="headerlink" title="实现实时跟踪"></a>实现实时跟踪</h2><p>实现实时跟踪的思路就是，通过定时器，每隔1秒钟对当前的图像进行人脸识别并描边，这样间接实现了对视频的实时人脸跟踪，如果想要跟踪速度更加灵敏一点，可以把时间间隔改成0.1秒。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">video.addEventListener(&apos;play&apos;, () =&gt; &#123;</div><div class="line">    console.log(&apos;play lisetner&apos;)</div><div class="line">    canvas = faceapi.createCanvasFromMedia(video);</div><div class="line">    document.body.append(canvas);</div><div class="line">    faceapi.matchDimensions(canvas, displaySize);</div><div class="line">    takePhoto();</div><div class="line">    setInterval(takePhoto,1000);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">async function takePhoto()&#123;</div><div class="line">    if (!faceapiReady) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    let detections = await detect();</div><div class="line">    draw(detections);</div><div class="line">&#125;</div><div class="line"></div><div class="line">async function detect() &#123;</div><div class="line">    // const options = new faceapi.TinyFaceDetectorOptions(&#123; scoreThreshold: 0.2, inputSize: 608 &#125;);</div><div class="line">    const options = new faceapi.SsdMobilenetv1Options(&#123; minConfidence: 0.5, maxResults: 3 &#125;);</div><div class="line">    const detections = await faceapi.detectAllFaces(video, options).withFaceLandmarks();</div><div class="line">    return detections;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function draw(detections) &#123;</div><div class="line">    const resizedDetections = faceapi.resizeResults(detections, displaySize);</div><div class="line">    canvas.getContext(&apos;2d&apos;).clearRect(0, 0, canvas.width, canvas.height);</div><div class="line">    faceapi.draw.drawDetections(canvas, resizedDetections);</div><div class="line">    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://www.v2ex.com/t/379352" target="_blank" rel="external">mysql group by 后选择哪条记录</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/5.7/en/group-by-handling.html" target="_blank" rel="external">MySQL :: MySQL 5.7 Reference Manual :: 12.20.3 MySQL Handling of GROUP BY</a></li>
+<li><a href="https://github.com/justadudewhohacks/face-api.js" target="_blank" rel="external">justadudewhohacks/face-api.js</a></li>
 </ul>
 <hr>
 <blockquote>
-<p>文章标题：<a href="http://www.cielni.com/2019/08/17/mysql-group-by-select/" target="_blank" rel="external">MySQL 中 Group By 后如何选择记录</a><br>文章作者：<a href="http://www.cielni.com/about/" target="_blank" rel="external">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2019/08/17/mysql-group-by-select/" target="_blank" rel="external">http://www.cielni.com/2019/08/17/mysql-group-by-select/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
+<p>文章标题：<a href="http://www.cielni.com/2020/03/07/brower-face-detect/" target="_blank" rel="external">基于浏览器的人脸实时跟踪</a><br>文章作者：<a href="http://www.cielni.com/about/" target="_blank" rel="external">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2020/03/07/brower-face-detect/" target="_blank" rel="external">http://www.cielni.com/2020/03/07/brower-face-detect/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
 </blockquote>
 
       
@@ -563,9 +552,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/js/" rel="tag"># js</a>
           
         </div>
       
@@ -593,8 +582,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/18/databse-big-table-add-filed/" rel="next" title="数据库大表添加字段的方法">
-                <i class="fa fa-chevron-left"></i> 数据库大表添加字段的方法
+              <a href="/2020/01/10/java-date-format/" rel="next" title="Java 中 YYYY-MM-dd 在跨年时的致命问题">
+                <i class="fa fa-chevron-left"></i> Java 中 YYYY-MM-dd 在跨年时的致命问题
               </a>
             
           </div>
@@ -602,10 +591,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/10/java-date-format/" rel="prev" title="Java 中 YYYY-MM-dd 在跨年时的致命问题">
-                Java 中 YYYY-MM-dd 在跨年时的致命问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -901,7 +886,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题背景"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误区"><span class="nav-number">2.</span> <span class="nav-text">误区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过浏览器开启摄像头"><span class="nav-number">1.</span> <span class="nav-text">通过浏览器开启摄像头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人脸识别"><span class="nav-number">2.</span> <span class="nav-text">人脸识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现实时跟踪"><span class="nav-number">3.</span> <span class="nav-text">实现实时跟踪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
