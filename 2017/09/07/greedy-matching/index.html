@@ -125,7 +125,7 @@
 <meta name="keywords" content="python,爬虫,实习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式的贪婪匹配与非贪婪匹配">
-<meta property="og:url" content="http://cielni.com/2017/09/07/greedy-matching/index.html">
+<meta property="og:url" content="http://www.cielni.com/2017/09/07/greedy-matching/index.html">
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
 <meta property="og:description" content="情景之前写过一个简单的爬虫，每天获取公司insgtagram主页的粉丝数用来进行粉丝趋势的展示。代码很简单就是通过获取主页源代码后用正则表达式匹配其中的一串json数据，再用python的json解析库进行解析，从中获取粉丝数。 然而昨天这个爬虫报错了，我重新看了一下ins主页的网页源代码，发现其中增加了一段内容，这段内容正好被我匹配进去了。经过思考显而易见，这是贪婪匹配的问题。">
 <meta property="og:locale" content="zh-CN">
@@ -141,7 +141,7 @@
 
 
 
-  <link rel="canonical" href="http://cielni.com/2017/09/07/greedy-matching/"/>
+  <link rel="canonical" href="http://www.cielni.com/2017/09/07/greedy-matching/"/>
 
 
 
@@ -378,7 +378,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cielni.com/2017/09/07/greedy-matching/">
+    <link itemprop="mainEntityOfPage" href="http://www.cielni.com/2017/09/07/greedy-matching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ciel Ni">
@@ -517,7 +517,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_by_request</span><span class="params">()</span>:</span></div><div class="line">    username = <span class="string">'insta360official'</span></div><div class="line">    url = <span class="string">'https://www.instagram.com/'</span> + username + <span class="string">'/'</span></div><div class="line">    response = requests.get(url=url, verify=<span class="keyword">False</span>)</div><div class="line">    page = response.text</div><div class="line">    pattern = re.compile(<span class="string">"window._sharedData = (.*?);&lt;/script&gt;"</span>, re.S)</div><div class="line">    items = re.findall(pattern, page)</div><div class="line">    jsonData = json.loads(items[<span class="number">0</span>])</div><div class="line">    count = jsonData[<span class="string">'entry_data'</span>][<span class="string">'ProfilePage'</span>][<span class="number">0</span>][<span class="string">'user'</span>][<span class="string">'followed_by'</span>][<span class="string">'count'</span>]</div><div class="line">    <span class="keyword">print</span> count</div><div class="line">    <span class="keyword">return</span> count</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    get_by_request()</div></pre></td></tr></table></figure>
 <hr>
 <blockquote>
-<p>文章标题：<a href="http://www.cielni.com/2017/09/07/greedy-matching/" target="_blank" rel="external">正则表达式的贪婪匹配与非贪婪匹配</a><br>文章作者：<a href="http://www.cielni.com/about/" target="_blank" rel="external">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2017/09/07/greedy-matching/" target="_blank" rel="external">http://www.cielni.com/2017/09/07/greedy-matching/</a><br>有问题或建议欢迎在<a href="http://www.cielni.com" target="_blank" rel="external">我的博客</a>讨论，转载或引用希望标明出处，感激不尽！</p>
+<p>文章标题：<a href="http://www.cielni.com/2017/09/07/greedy-matching/">正则表达式的贪婪匹配与非贪婪匹配</a><br>文章作者：<a href="http://www.cielni.com/about/">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2017/09/07/greedy-matching/">http://www.cielni.com/2017/09/07/greedy-matching/</a><br>有问题或建议欢迎在<a href="http://www.cielni.com">我的博客</a>讨论，转载或引用希望标明出处，感激不尽！</p>
 </blockquote>
 
       
