@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.cielni.com/"/>
-  <updated>2020-03-07T13:05:01.514Z</updated>
+  <updated>2021-07-04T15:15:12.907Z</updated>
   <id>http://www.cielni.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 Coding 进行网站托管时的域名解析采坑之旅</title>
+    <link href="http://www.cielni.com/2021/07/04/coding-deposit/"/>
+    <id>http://www.cielni.com/2021/07/04/coding-deposit/</id>
+    <published>2021-07-04T13:44:52.000Z</published>
+    <updated>2021-07-04T15:15:12.907Z</updated>
+    
+    <content type="html"><![CDATA[<p>##背景</p><p>因为 <a href="https://coding.net/" target="_blank" rel="external">coding.net</a> 经常改版，导致我之前用 Coding Pages 进行的托管不知何时失效了，于是去官网看了下，意识到需要重新设置网站托管。（印象中，coding 最几年一直在做产品调整，每次点进它的网页，都不太一样）</p><p><img src="https://z3.ax1x.com/2021/07/04/RfRr5R.jpg" alt="图挂了。。"></p><a id="more"></a> <h2 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h2><p>首先是添加需要关联的域名，添加以后证书状态会显示审核中，点击【审核中】，跳转到腾讯云进行域名验证。关于这一步的操作我就不赘述了，大概流程就是需要在域名解析增加一条规定的记录来证明该域名确实是你自己的。</p><p><img src="https://z3.ax1x.com/2021/07/04/RfhY8I.jpg" alt="图挂了"><br><img src="https://z3.ax1x.com/2021/07/04/Rf4Xpn.png" alt="图挂了"></p><p>审核完以后，你就可以把 Coding 告诉你的 CNAME 指向，添加到域名解析中。</p><h2 id="域名问题"><a href="#域名问题" class="headerlink" title="域名问题"></a>域名问题</h2><p>当我以为大功告成的时候，却出现了一个问题。此时我访问 cielni.com 是ok的，但访问 www.cielni.com 的时候，却显示The requested URL ‘/‘ was not found on this server。可我明明配了www的主机记录呀。<br>经过一番查阅后，在知乎上看了了一个比较靠谱的答案：</p><blockquote><p><a href="https://www.zhihu.com/question/275263324/answer/995244157" target="_blank" rel="external">requested URL ‘/‘ was not found on this server. ？ - 极客兔子的回答 - 知乎</a></p></blockquote><p>引用一下里面的结论就是</p><blockquote><p>使用什么域名接入腾讯云CDN服务，那就应该使用正确的域名做CNAME解析，例如以下示例。</p><p>错误的CNAME解析：</p><p>blog.douniwan.club -&gt; douniwan.club.cdn.dnsv1.com</p><p>www.douniwan.cluub -&gt; douniwan.club.cdn.dnsv1.com </p><p>正确的CNAME解析：</p><p>douniwan.club -&gt; douniwan.club.cdn.dnsv1.com</p><p>www.douniwan.cluub -&gt; www.douniwan.club.cdn.dnsv1.com</p></blockquote><p>也就是说，在使用腾讯云的 CNAME 指向时，www 类型的主机记录，相应的就需要 www 开头的 CNAME值。<br>于是我修改了我的域名解析设置：<br><img src="https://z3.ax1x.com/2021/07/04/Rf7YGQ.png" alt="图挂了。。"></p><p>但是，我等了十分钟解析生效以后，问题还是存在。</p><h2 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h2><p>我继续看了下那个知乎的提问，注意到了腾讯云的官方回答：</p><p><a href="https://www.zhihu.com/question/275263324/answer/379151027" target="_blank" rel="external">requested URL ‘/‘ was not found on this server. ？ - 腾讯云小助手的回答 - 知乎</a></p><blockquote><p>加速域名是精准匹配的，www. ruankun.xyz 如果需要访问加速，需要单独在CDN 接入，获取新的CNAME，配置即可。</p></blockquote><p>虽然他说的是 CDN 的问题，但我瞬间明白了，我并没有想腾讯云申请 www 开头的 CNAME 指向，所以我在域名解析添加的 www.cielni.com.cdn.dnsv1.com 其实是不存在的。往前溯源，其实是因为我在 Coding 只绑定了 cielni.com 这个域名，而没有绑定 www.cielni.com。于是我果断去 Coding 增加了域名绑定，果然得到了 www.cielni.com.cdn.dnsv1.com 这个 CNAME 指向。</p><p><img src="https://z3.ax1x.com/2021/07/04/RfqwqI.png" alt="图挂了。。"></p><p>重新部署以后访问 <a href="http://www.cielni.com">www.cielni.com</a> 成功！<br>Case closed.</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://www.zhihu.com/question/275263324" target="_blank" rel="external">requested URL ‘/‘ was not found on this server. ？ - 知乎</a></li><li><a href="https://cloud.tencent.com/developer/article/1190789" target="_blank" rel="external">腾讯云CDN域名解析错误引发的血案</a></li></ul><hr><blockquote><p>文章标题：<a href="http://www.cielni.com/2021/07/04/coding-deposit/">使用 Coding 进行网站托管时的域名解析采坑之旅</a><br>文章作者：<a href="http://www.cielni.com/about/">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2021/07/04/coding-deposit/">http://www.cielni.com/2021/07/04/coding-deposit/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##背景&lt;/p&gt;
+&lt;p&gt;因为 &lt;a href=&quot;https://coding.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;coding.net&lt;/a&gt; 经常改版，导致我之前用 Coding Pages 进行的托管不知何时失效了，于是去官网看了下，意识到需要重新设置网站托管。（印象中，coding 最几年一直在做产品调整，每次点进它的网页，都不太一样）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://z3.ax1x.com/2021/07/04/RfRr5R.jpg&quot; alt=&quot;图挂了。。&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="运维笔记" scheme="http://www.cielni.com/categories/%E8%BF%90%E7%BB%B4%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="运维" scheme="http://www.cielni.com/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="网络" scheme="http://www.cielni.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>基于face-api.js的人脸实时跟踪</title>
@@ -527,31 +553,6 @@
       <category term="js" scheme="http://www.cielni.com/tags/js/"/>
     
       <category term="Vue" scheme="http://www.cielni.com/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>动态改变checkbox的选中状态</title>
-    <link href="http://www.cielni.com/2017/06/12/prop-and-attr/"/>
-    <id>http://www.cielni.com/2017/06/12/prop-and-attr/</id>
-    <published>2017-06-12T09:59:34.000Z</published>
-    <updated>2018-11-01T09:15:06.823Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在写前端的时候，有一个需求是要用 js 代码动态改变复选框 checkbox 的选中状态。我的思路是通过改变checkbox元素的checked属性来实现页面上复选框是否选中的切换。</p><p>一开始的方法是通过jquery的attr()和removeAttr()方法来完成对元素checked属性的添加与修改，代码如下：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">leader = $(<span class="string">'#leader_modify'</span>);</div><div class="line">            <span class="keyword">if</span>(is_leader == <span class="string">'1'</span>)&#123;</div><div class="line">              leader.attr(<span class="string">'checked'</span>, <span class="string">'checked'</span>);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">              leader.removeAttr(<span class="string">'checked'</span>)</div><div class="line">            &#125;</div></pre></td></tr></table></figure><p>这样子写是基本可以完成checkbox的状态切换，但会有一个bug：切换在一开始是正常的，但当我点击了一次复选框以后，之前的状态切换就不起作用了（。。这不是坑爹吗！？）<br><a id="more"></a> </p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>经过一番漫无目的的搜索资料，我仔细研究了下 jquery的 <a href="http://www.jquery123.com/attr/" target="_blank" rel="external">.attr()</a> 方法，attr() 可以获取匹配的元素集合中的第一个元素的属性的值，或者设置每一个匹配元素的一个或多个属性。而这个属性的英文为 Attribute，它有别于Property。 </p><ul><li>property是DOM中的属性，是JavaScript里的对象</li><li>attribute是HTML标签上的特性，它的值只能够是字符串</li></ul><p>boolean attributes，比如：checked，仅被设置成默认值或初始值。在一个checkbox的元素中，checked attributes在页面加载的时候就被设置，而不管checkbox元素是否被选中。</p><p>properties就是浏览器用来记录当前值的东西。正常情况下，properties反映它们相应的attributes(如果存在的话)。但这并不是boolean attriubutes的情况。当用户点击一个checkbox元素或选中一个select元素的一个option时，boolean properties保持最新。但相应的boolean attributes是不一样的，正如上面所述，它们仅被浏览器用来保存初始值。</p><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>由此可见，通过改变 checked 这个 attribute 来实现checkbox 状态的动态改变是不可行的，应该通过设置 checkbox 的 property 属性 来实现。jquery 提供了<a href="http://www.jquery123.com/prop/" target="_blank" rel="external">.prop()</a> 方法。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">leader = $(<span class="string">'#leader_modify'</span>);</div><div class="line">            <span class="keyword">if</span>(is_leader == <span class="string">'1'</span>)&#123;</div><div class="line">                leader.prop(<span class="string">'checked'</span>, <span class="literal">true</span>)</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                leader.prop(<span class="string">'checked'</span>, <span class="literal">false</span>);</div><div class="line">            &#125;</div></pre></td></tr></table></figure><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote><p><em>attributes 和 properties</em>之间的差异在特定情况下是很重要。<strong>jQuery 1.6之前</strong> ，.attr()方法在取某些 attribute 的值时，会返回 property 的值，这就导致了结果的不一致。<strong>从 jQuery 1.6 开始</strong>， .prop()方法返回 property 的值,而 .attr()  方法返回 attributes 的值。</p></blockquote><p>通过prop()来获取输入框里面的值永远都是和它里面的值同步的，而通过attr()老获取输入框里面的值一直都是在html标签里面设置的值。</p><p>根据官方的建议：<strong>具有 true 和 false 两个属性的属性，如 checked, selected 或者 disabled 使用prop()，其他的使用 attr()。</strong></p><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul><li><a href="http://www.cnblogs.com/yuanzm/p/4125032.html" target="_blank" rel="external">Web前端之复选框选中属性</a> </li><li><a href="http://blog.csdn.net/brucecheng22/article/details/50408199" target="_blank" rel="external">checkbox选中属性—坑到死</a></li><li><a href="http://www.cnblogs.com/elcarim5efil/p/4698980.html" target="_blank" rel="external">DOM 中 Property 和 Attribute 的区别</a> </li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h3&gt;&lt;p&gt;在写前端的时候，有一个需求是要用 js 代码动态改变复选框 checkbox 的选中状态。我的思路是通过改变checkbox元素的checked属性来实现页面上复选框是否选中的切换。&lt;/p&gt;
-&lt;p&gt;一开始的方法是通过jquery的attr()和removeAttr()方法来完成对元素checked属性的添加与修改，代码如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;leader = $(&lt;span class=&quot;string&quot;&gt;&#39;#leader_modify&#39;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(is_leader == &lt;span class=&quot;string&quot;&gt;&#39;1&#39;&lt;/span&gt;)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;              leader.attr(&lt;span class=&quot;string&quot;&gt;&#39;checked&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;checked&#39;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;              leader.removeAttr(&lt;span class=&quot;string&quot;&gt;&#39;checked&#39;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            &amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这样子写是基本可以完成checkbox的状态切换，但会有一个bug：切换在一开始是正常的，但当我点击了一次复选框以后，之前的状态切换就不起作用了（。。这不是坑爹吗！？）&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端笔记" scheme="http://www.cielni.com/categories/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="js" scheme="http://www.cielni.com/tags/js/"/>
     
   </entry>
   
