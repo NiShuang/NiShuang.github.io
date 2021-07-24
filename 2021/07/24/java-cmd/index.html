@@ -121,16 +121,18 @@
 
 
 
-  <meta name="description" content="起风了 唯有努力生存">
-<meta property="og:type" content="website">
-<meta property="og:title" content="年轮说 | Ciel Ni">
-<meta property="og:url" content="http://www.cielni.com/tags/黑暗骑士/index.html">
+  <meta name="description" content="背景当我们在终端执行命令行时，如果遇到带空格的路径名，往往有两种处理方法 12345cat a\ b\ c.txt测试内容cat &amp;apos;a b c.txt&amp;apos;测试内容 而当我们在Java使用 Runtime.getRuntime().exec() 执行上面的命令时，却得不到想要的结果">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 调用 CMD 命令时路径名带空格的解决方案">
+<meta property="og:url" content="http://www.cielni.com/2021/07/24/java-cmd/index.html">
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
-<meta property="og:description" content="起风了 唯有努力生存">
+<meta property="og:description" content="背景当我们在终端执行命令行时，如果遇到带空格的路径名，往往有两种处理方法 12345cat a\ b\ c.txt测试内容cat &amp;apos;a b c.txt&amp;apos;测试内容 而当我们在Java使用 Runtime.getRuntime().exec() 执行上面的命令时，却得不到想要的结果">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-07-24T07:37:27.995Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="年轮说 | Ciel Ni">
-<meta name="twitter:description" content="起风了 唯有努力生存">
+<meta name="twitter:title" content="Java 调用 CMD 命令时路径名带空格的解决方案">
+<meta name="twitter:description" content="背景当我们在终端执行命令行时，如果遇到带空格的路径名，往往有两种处理方法 12345cat a\ b\ c.txt测试内容cat &amp;apos;a b c.txt&amp;apos;测试内容 而当我们在Java使用 Runtime.getRuntime().exec() 执行上面的命令时，却得不到想要的结果">
 
 
 
@@ -139,7 +141,7 @@
 
 
 
-  <link rel="canonical" href="http://www.cielni.com/tags/黑暗骑士/"/>
+  <link rel="canonical" href="http://www.cielni.com/2021/07/24/java-cmd/"/>
 
 
 
@@ -149,7 +151,7 @@
   };
 </script>
 
-  <title>标签: 黑暗骑士 | 年轮说 | Ciel Ni</title>
+  <title>Java 调用 CMD 命令时路径名带空格的解决方案 | 年轮说 | Ciel Ni</title>
   
 
 
@@ -206,7 +208,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,7 +265,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">21</span></a>
   </li>
@@ -354,84 +356,274 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>黑暗骑士<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.cielni.com/2021/07/24/java-cmd/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ciel Ni">
+      <meta itemprop="description" content="起风了 唯有努力生存">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="年轮说 | Ciel Ni">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/06/02/flash-point-event/" itemprop="url">
-              
-                <span itemprop="name">托马斯韦恩给布鲁斯韦恩的信（闪点事件）</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Java 调用 CMD 命令时路径名带空格的解决方案
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-02T23:18:11+08:00"
-              content="2017-06-02" >
-          06-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-07-24 15:44:52" itemprop="dateCreated datePublished" datetime="2021-07-24T15:44:52+08:00">2021-07-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端笔记/" itemprop="url" rel="index"><span itemprop="name">后端笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当我们在终端执行命令行时，如果遇到带空格的路径名，往往有两种处理方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cat a\ b\ c.txt</div><div class="line">测试内容</div><div class="line"></div><div class="line">cat &apos;a b c.txt&apos;</div><div class="line">测试内容</div></pre></td></tr></table></figure>
+<p>而当我们在Java使用 <code>Runtime.getRuntime().exec()</code> 执行上面的命令时，却得不到想要的结果</p>
+<a id="more"></a> 
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>想要解决该问题，首先分析 <code>exec(String cmd)</code> 方法的源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public Process exec(String command, String[] envp, File dir)</div><div class="line">    throws IOException &#123;</div><div class="line">    if (command.length() == 0)</div><div class="line">        throw new IllegalArgumentException(&quot;Empty command&quot;);</div><div class="line"></div><div class="line">    StringTokenizer st = new StringTokenizer(command);</div><div class="line">    String[] cmdarray = new String[st.countTokens()];</div><div class="line">    for (int i = 0; st.hasMoreTokens(); i++)</div><div class="line">        cmdarray[i] = st.nextToken();</div><div class="line">    return exec(cmdarray, envp, dir);</div><div class="line">&#125;</div><div class="line">```</div></pre></td></tr></table></figure>
+<p>public StringTokenizer(String str) {<br>    this(str, “ \t\n\r\f”, false);<br>}</p>
+<p>public StringTokenizer(String str, String delim, boolean returnDelims) {<br>    currentPosition = 0;<br>    newPosition = -1;<br>    delimsChanged = false;<br>    this.str = str;<br>    maxPosition = str.length();<br>    delimiters = delim;<br>    retDelims = returnDelims;<br>    setMaxDelimCodePoint();<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">可以看到，首先会将CMD命令构造成一个 StringTokenizer 对象，该对象的默认分隔符是`&quot; \t\n\r\f&quot;`, 也就是常见的空格符、换行符、制表符。也就是说，只要命令出现了这些符号，不管有没有带上转移或者引号，都会被分割成 `cmdarry` ，流入后面的方法`exec(String[] cmdarray)`。</div><div class="line"></div><div class="line">## 解决方案</div><div class="line">其实到这一步我们已经知道该怎么解决了，我们肯定不能修改它默认的分隔符，因为这样的话 所有的空格都将不会被分割。所以我们只能跳过源码分割阶段，自己分割CMD命令，然后直接将`cmdarray`传给`exec(String[] cmdarray)`方法 。代码如下，注意前两行代码：</div></pre></td></tr></table></figure></p>
+<p>String[] cmdarray = new String[]{“cat”, “/Users/ciel/Downloads/a b c.txt”};<br>Process process = Runtime.getRuntime().exec(cmdarray);<br>InputStream in = process.getInputStream();<br>InputStreamReader reader = new InputStreamReader(in);<br>BufferedReader br = new BufferedReader(reader);<br>StringBuffer sb = new StringBuffer();<br>String message;<br>while ((message = br.readLine()) != null) {<br>    sb.append(message);<br>}<br>System.out.println(sb);</p>
+<p>// 得到文件的内容：<br>// 测试内容<br>```</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://blog.csdn.net/xuecancan/article/details/79389496" target="_blank" rel="external">Java 执行cmd程序，并获取命令行内容</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>文章标题：<a href="http://www.cielni.com/2021/07/24/java-cmd/">Java 调用 CMD 命令时路径名带空格的解决方案</a><br>文章作者：<a href="http://www.cielni.com/about/">Ciel Ni</a><br>文章链接：<a href="http://www.cielni.com/2021/07/24/java-cmd/">http://www.cielni.com/2021/07/24/java-cmd/</a><br>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
+</blockquote>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="Ciel Ni wechat" style="width: 200px; max-width: 100%;"/>
+    <div>如有疑问或建议欢迎加微信讨论</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/weixin-reward.png" alt="Ciel Ni 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay-reward.png" alt="Ciel Ni 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/04/coding-deposit/" rel="next" title="使用 Coding 进行网站托管时的域名解析采坑之旅">
+                <i class="fa fa-chevron-left"></i> 使用 Coding 进行网站托管时的域名解析采坑之旅
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ1My82MDIx"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -454,9 +646,18 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -682,6 +883,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -851,6 +1068,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
@@ -869,6 +1090,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1265,7 +1497,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script type="text/javascript">
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('manual', "#更多");
   
   </script>
 
