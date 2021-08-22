@@ -5,10 +5,10 @@
     <url>%2F2021%2F07%2F24%2Fjava-cmd%2F</url>
     <content type="text"><![CDATA[背景当我们在终端执行命令行时，如果遇到带空格的路径名，往往有两种处理方法 12345cat a\ b\ c.txt测试内容cat &apos;a b c.txt&apos;测试内容 而当我们在Java使用 Runtime.getRuntime().exec() 执行上面的命令时，却得不到想要的结果 分析想要解决该问题，首先分析 exec(String cmd) 方法的源码 123456789101112public Process exec(String command, String[] envp, File dir) throws IOException &#123; if (command.length() == 0) throw new IllegalArgumentException(&quot;Empty command&quot;); StringTokenizer st = new StringTokenizer(command); String[] cmdarray = new String[st.countTokens()]; for (int i = 0; st.hasMoreTokens(); i++) cmdarray[i] = st.nextToken(); return exec(cmdarray, envp, dir);&#125;``` public StringTokenizer(String str) { this(str, “ \t\n\r\f”, false);} public StringTokenizer(String str, String delim, boolean returnDelims) { currentPosition = 0; newPosition = -1; delimsChanged = false; this.str = str; maxPosition = str.length(); delimiters = delim; retDelims = returnDelims; setMaxDelimCodePoint();}1234可以看到，首先会将CMD命令构造成一个 StringTokenizer 对象，该对象的默认分隔符是`&quot; \t\n\r\f&quot;`, 也就是常见的空格符、换行符、制表符。也就是说，只要命令出现了这些符号，不管有没有带上转移或者引号，都会被分割成 `cmdarry` ，流入后面的方法`exec(String[] cmdarray)`。## 解决方案其实到这一步我们已经知道该怎么解决了，我们肯定不能修改它默认的分隔符，因为这样的话 所有的空格都将不会被分割。所以我们只能跳过源码分割阶段，自己分割CMD命令，然后直接将`cmdarray`传给`exec(String[] cmdarray)`方法 。代码如下，注意前两行代码： String[] cmdarray = new String[]{“cat”, “/Users/ciel/Downloads/a b c.txt”};Process process = Runtime.getRuntime().exec(cmdarray);InputStream in = process.getInputStream();InputStreamReader reader = new InputStreamReader(in);BufferedReader br = new BufferedReader(reader);StringBuffer sb = new StringBuffer();String message;while ((message = br.readLine()) != null) { sb.append(message);}System.out.println(sb); // 得到文件的内容：// 测试内容``` 参考资料 Java 执行cmd程序，并获取命令行内容 文章标题：Java 调用 CMD 命令时路径名带空格的解决方案文章作者：Ciel Ni文章链接：http://www.cielni.com/2021/07/24/java-cmd/有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！]]></content>
       <categories>
-        <category>后端笔记</category>
+        <category>Java笔记</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
