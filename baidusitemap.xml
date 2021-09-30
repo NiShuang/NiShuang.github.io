@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.cielni.com/2021/09/30/mysql8-timezone/</loc>
+    <lastmod>2021-09-30</lastmod>
+  </url>
+  <url>
+    <loc>http://www.cielni.com/2021/09/30/sqlserver-image2file/</loc>
+    <lastmod>2021-09-30</lastmod>
+  </url>
+  <url>
     <loc>http://www.cielni.com/2021/07/24/java-cmd/</loc>
     <lastmod>2021-07-24</lastmod>
   </url>

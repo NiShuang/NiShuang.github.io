@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.cielni.com/"/>
-  <updated>2021-07-24T07:42:45.533Z</updated>
+  <updated>2021-09-30T14:47:49.906Z</updated>
   <id>http://www.cielni.com/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot 连接 MySQL 8.0 的时区问题</title>
+    <link href="http://www.cielni.com/2021/09/30/mysql8-timezone/"/>
+    <id>http://www.cielni.com/2021/09/30/mysql8-timezone/</id>
+    <published>2021-09-30T04:54:41.000Z</published>
+    <updated>2021-09-30T14:47:49.906Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>因为数据库要升级到 MySQL 8.0 所以要对架构做升级，主要的修改工作如下：</p><ul><li><p>驱动包要升级为 mysql-connector-java-8.0.11.jar</p></li><li><p>JDBC driver 由 com.mysql.jdbc.Driver 改为 com.mysql.cj.jdbc.Driver</p></li><li><p>JDBC url 中加上 userSSL=false</p></li></ul><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>升级以后发现通过 Mybatisplus 从数据库获取的时间字段值和数据库的值会有几小时的差异，这其实是程序所在时区和数据库的时区不一致导致的。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>解决方案有两个</p><h3 id="修改程序默认时区"><a href="#修改程序默认时区" class="headerlink" title="修改程序默认时区"></a>修改程序默认时区</h3><p>通过代码将程序的系统默认时区改成和数据库的时区一致，如果数据库时区为0时区，那需要将程序的系统时区改成0时区。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TimeZone.setDefault(TimeZone.getTimeZone(&quot;Asia/Shanghai&quot;))</div></pre></td></tr></table></figure></p><h3 id="修改数据库时区"><a href="#修改数据库时区" class="headerlink" title="修改数据库时区"></a>修改数据库时区</h3><p>通过在JDBC url 增加参数，使数据库时区和程序系统时区一致：</p><p>如果你是在本地运行代码，在 JDBC url 加上 &amp;serverTimezone=Asia/Shanghai 或者 &amp;serverTimezone=GMT%2B8</p><p>如果你的程序是在服务器上运行，则加上&amp;serverTimezone={服务器的时区}，0时区的话就是UTC。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul><li><a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html" target="_blank" rel="external">MySQL Server Time Zone Support</a></li><li><a href="https://blog.csdn.net/f2006116/article/details/81224569" target="_blank" rel="external">com.mysql.jdbc.Driver 和 com.mysql.cj.jdbc.Driver的区别</a></li></ul><hr><blockquote><p>文章标题：<a href="http://www.cielni.com/2021/09/30/mysql8-timezone/">连接 MySQL 8.0 的时区问题</a></p><p>文章作者：<a href="http://www.cielni.com/about/">Ciel Ni</a></p><p>文章链接：<a href="http://www.cielni.com/2021/09/30/mysql8-timezone/">http://www.cielni.com/2021/09/30/mysql8-timezone/</a></p><p>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;因为数据库要升级到 MySQL 8.0 所以要对架构做升级，主要的修改工作如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;驱动包要升级为 mysql
+      
+    
+    </summary>
+    
+      <category term="后端笔记" scheme="http://www.cielni.com/categories/%E5%90%8E%E7%AB%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="java" scheme="http://www.cielni.com/tags/java/"/>
+    
+      <category term="MySQL" scheme="http://www.cielni.com/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SqlServer读取image类型字段并存文件</title>
+    <link href="http://www.cielni.com/2021/09/30/sqlserver-image2file/"/>
+    <id>http://www.cielni.com/2021/09/30/sqlserver-image2file/</id>
+    <published>2021-09-30T03:54:41.000Z</published>
+    <updated>2021-09-30T14:47:49.868Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>金蝶云上传文件的结果会以image类型保存在，现在希望用代码的方式把这部分文件批量导出</p><a id="more"></a> <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">sql = &quot;SELECT * FROM T_BAS_Attachment&quot;</div><div class="line">self.cursor.execute(sql)</div><div class="line">res = self.cursor.fetchall()</div><div class="line">for item in res:</div><div class="line"> content = item[10]</div><div class="line">    data = io.BytesIO(content)</div><div class="line">    filename = item[4]</div><div class="line">    if filename is not None:</div><div class="line">        directory = &apos;/Users/insta360/Downloads/attachment/&apos; + item[1]</div><div class="line">        if not os.path.exists(directory):</div><div class="line">            os.makedirs(directory)</div><div class="line">        with open(directory + &apos;/&apos; + item[5] + &apos;_&apos; + item[4], &apos;wb&apos;) as f:</div><div class="line">            f.write(data.getvalue())</div><div class="line">            data.close()</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;金蝶云上传文件的结果会以image类型保存在，现在希望用代码的方式把这部分文件批量导出&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="后端笔记" scheme="http://www.cielni.com/categories/%E5%90%8E%E7%AB%AF%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="数据库" scheme="http://www.cielni.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="SqlServer" scheme="http://www.cielni.com/tags/SqlServer/"/>
+    
+  </entry>
   
   <entry>
     <title>Java 调用 CMD 命令时路径名带空格的解决方案</title>
@@ -496,59 +549,6 @@
       <category term="爬虫" scheme="http://www.cielni.com/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="实习" scheme="http://www.cielni.com/tags/%E5%AE%9E%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>健的最后告白（求婚大作战）</title>
-    <link href="http://www.cielni.com/2017/07/25/operation-love/"/>
-    <id>http://www.cielni.com/2017/07/25/operation-love/</id>
-    <published>2017-07-25T10:34:11.000Z</published>
-    <updated>2017-10-30T05:09:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>14年間　<br>14年来　</p><p>楽しいときも　<br>快乐时</p><p>辛い時も　<br>难过时</p><p>苦しい時も　<br>痛苦时</p><p>ずっと一緒に過ごしてきた礼を　<br>都一起度过的礼</p><a id="more"></a> <p>幸せに出来るのは　僕しかいないと本気で思っていました　<br>我真的认为，只有我才能给她幸福</p><p>気に食わないことがあると　<br>すぐにふてくされる礼を　<br>不和她的意思就马上翻脸的礼</p><p>掃除や仕事をサボっていると　すぐに怒り出す礼を　<br>如果偷懒不打扫不工作 马上就生气的礼</p><p>意地っ張りで　<br>全然素直じゃない礼を　<br>只会逞强 一点儿也不坦率的礼</p><p>一番知っているのは僕です　<br>最清楚她的人是我</p><p>強い人間に見えて　実はすごく繊細な礼を　　<br>事实上是很纤细的礼　</p><p>自分のことは二の次で　<br>总把自己的事排在第二</p><p>誰よりも仲間思いな礼を　<br>比谁都会为朋友着想的礼　　</p><p>ユニフォームの洗濯が　抜群に上手い礼を　　<br>清洗制服也很棒的礼 　</p><p>いつもただ　そばにいてくれた　礼を　　<br>一直守在身边的礼 　</p><p>一番必要としていたのは　僕でした　<br>最需要她的人 是我</p><p>でも結局　心の中で思っているだけで　<br>但是总是在心中想着</p><p>礼の前では一度も素直になれませんでした　<br>在她面前 一次都没有能坦白</p><p>あんなに側にいて　<br>总是陪在我身边</p><p>いつでも言えると思っていた言葉が<br>无论什么时候都能说的话　</p><p>結局一度も言えませんでした<br>最后却一次也没说出来　</p><p>たった一言が　　<br>就连一句话</p><p>一度も言えませんでした　<br>也没能说出来</p><p>僕は　<br>我　　</p><p>礼のことが　好きでした　<br>喜欢过礼</p><p>正直言うと　今でも礼のことが好きです　<br>老实说 现在也爱着她</p><p>でも礼は　<br>但是今天</p><p>今日多田さんと結婚します　<br>礼要和多田老师结婚</p><p>悔しいけど　　　<br>虽然不甘心</p><p>結婚してしまいます　<br>他们也要结婚</p><p>礼の存在は　僕の中で　すごく大きかったから　<br>礼对我来说 是很重要的存在　　</p><p>この言葉に　たどり着くまでに　<br>为了说这些话 　</p><p>ずいぶん時間がかかってしまいました　<br>准备了好长时间</p><p>礼　</p><p>結婚おめでとう　<br>新婚快乐</p><p>幸せになれよ　<br>要幸福</p><p>幸せにならなかったら<br>如果没让自己幸福　　　</p><p>幸せにならなかったら　　　<br>マジで許さないからな<br>我真的不会原谅你的！ </p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;14年間　&lt;br&gt;14年来　&lt;/p&gt;
-&lt;p&gt;楽しいときも　&lt;br&gt;快乐时&lt;/p&gt;
-&lt;p&gt;辛い時も　&lt;br&gt;难过时&lt;/p&gt;
-&lt;p&gt;苦しい時も　&lt;br&gt;痛苦时&lt;/p&gt;
-&lt;p&gt;ずっと一緒に過ごしてきた礼を　&lt;br&gt;都一起度过的礼&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="光影笔记" scheme="http://www.cielni.com/categories/%E5%85%89%E5%BD%B1%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="日剧" scheme="http://www.cielni.com/tags/%E6%97%A5%E5%89%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>kekbab-case （短横线隔开命名法）</title>
-    <link href="http://www.cielni.com/2017/07/08/kekbab-case/"/>
-    <id>http://www.cielni.com/2017/07/08/kekbab-case/</id>
-    <published>2017-07-07T16:17:33.000Z</published>
-    <updated>2017-10-30T05:09:51.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在Vue.js中，由于 HTML 特性不区分大小写。名字形式为 camelCase 的 prop 用作特性时，需要转为 kebab-case（短横线隔开）。<br>即 myMessage 转为 my-message 。</p><p>官网例子：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Vue.component(<span class="string">'child'</span>, &#123;</div><div class="line">  <span class="comment">// camelCase in JavaScript</span></div><div class="line">  props: [<span class="string">'myMessage'</span>],</div><div class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; myMessage &#125;&#125;&lt;/span&gt;'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- kebab-case in HTML --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">child</span> <span class="attr">my-message</span>=<span class="string">"hello!"</span>&gt;</span><span class="tag">&lt;/<span class="name">child</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在Vue.js中，由于 HTML 特性不区分大小写。名字形式为 camelCase 的 prop 用作特性时，需要转为 kebab-case（短横线隔开）。&lt;br&gt;即 myMessage 转为 my-message 。&lt;/p&gt;
-&lt;p&gt;官网例子：&lt;/p&gt;
-&lt;figure cl
-      
-    
-    </summary>
-    
-      <category term="前端笔记" scheme="http://www.cielni.com/categories/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="Vue" scheme="http://www.cielni.com/tags/Vue/"/>
     
   </entry>
   

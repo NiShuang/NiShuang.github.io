@@ -266,7 +266,7 @@
           
           <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">21</span></a>
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">22</span></a>
   </li>
         
         
@@ -282,7 +282,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">30</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">32</span></a>
   </li>
 
       
@@ -359,6 +359,343 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.cielni.com/2021/09/30/mysql8-timezone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ciel Ni">
+      <meta itemprop="description" content="起风了 唯有努力生存">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="年轮说 | Ciel Ni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/30/mysql8-timezone/" itemprop="url">
+                  SpringBoot 连接 MySQL 8.0 的时区问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-09-30 12:54:41" itemprop="dateCreated datePublished" datetime="2021-09-30T12:54:41+08:00">2021-09-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端笔记/" itemprop="url" rel="index"><span itemprop="name">后端笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>因为数据库要升级到 MySQL 8.0 所以要对架构做升级，主要的修改工作如下：</p>
+<ul>
+<li><p>驱动包要升级为 mysql-connector-java-8.0.11.jar</p>
+</li>
+<li><p>JDBC driver 由 com.mysql.jdbc.Driver 改为 com.mysql.cj.jdbc.Driver</p>
+</li>
+<li><p>JDBC url 中加上 userSSL=false</p>
+</li>
+</ul>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>升级以后发现通过 Mybatisplus 从数据库获取的时间字段值和数据库的值会有几小时的差异，这其实是程序所在时区和数据库的时区不一致导致的。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>解决方案有两个</p>
+<h3 id="修改程序默认时区"><a href="#修改程序默认时区" class="headerlink" title="修改程序默认时区"></a>修改程序默认时区</h3><p>通过代码将程序的系统默认时区改成和数据库的时区一致，如果数据库时区为0时区，那需要将程序的系统时区改成0时区。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TimeZone.setDefault(TimeZone.getTimeZone(&quot;Asia/Shanghai&quot;))</div></pre></td></tr></table></figure></p>
+<h3 id="修改数据库时区"><a href="#修改数据库时区" class="headerlink" title="修改数据库时区"></a>修改数据库时区</h3><p>通过在JDBC url 增加参数，使数据库时区和程序系统时区一致：</p>
+<p>如果你是在本地运行代码，在 JDBC url 加上 &amp;serverTimezone=Asia/Shanghai 或者 &amp;serverTimezone=GMT%2B8</p>
+<p>如果你的程序是在服务器上运行，则加上&amp;serverTimezone={服务器的时区}，0时区的话就是UTC。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html" target="_blank" rel="external">MySQL Server Time Zone Support</a></li>
+<li><a href="https://blog.csdn.net/f2006116/article/details/81224569" target="_blank" rel="external">com.mysql.jdbc.Driver 和 com.mysql.cj.jdbc.Driver的区别</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>文章标题：<a href="http://www.cielni.com/2021/09/30/mysql8-timezone/">连接 MySQL 8.0 的时区问题</a></p>
+<p>文章作者：<a href="http://www.cielni.com/about/">Ciel Ni</a></p>
+<p>文章链接：<a href="http://www.cielni.com/2021/09/30/mysql8-timezone/">http://www.cielni.com/2021/09/30/mysql8-timezone/</a></p>
+<p>有问题或建议欢迎与我联系讨论，转载或引用希望标明出处，感激不尽！</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.cielni.com/2021/09/30/sqlserver-image2file/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ciel Ni">
+      <meta itemprop="description" content="起风了 唯有努力生存">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="年轮说 | Ciel Ni">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/09/30/sqlserver-image2file/" itemprop="url">
+                  SqlServer读取image类型字段并存文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-09-30 11:54:41" itemprop="dateCreated datePublished" datetime="2021-09-30T11:54:41+08:00">2021-09-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端笔记/" itemprop="url" rel="index"><span itemprop="name">后端笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>金蝶云上传文件的结果会以image类型保存在，现在希望用代码的方式把这部分文件批量导出</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/09/30/sqlserver-image2file/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1637,334 +1974,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.cielni.com/2018/09/03/crawler-list/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ciel Ni">
-      <meta itemprop="description" content="起风了 唯有努力生存">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="年轮说 | Ciel Ni">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/03/crawler-list/" itemprop="url">
-                  近期爬虫项目整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-03 16:28:57" itemprop="dateCreated datePublished" datetime="2018-09-03T16:28:57+08:00">2018-09-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/爬虫笔记/" itemprop="url" rel="index"><span itemprop="name">爬虫笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><a href="https://github.com/NiShuang/douyin-crawler" target="_blank" rel="external">抖音个人主页爬虫</a></li>
-<li><a href="https://github.com/NiShuang/instagram-crawler" target="_blank" rel="external">Instagram 个人主页爬虫</a></li>
-<li><a href="https://github.com/NiShuang/twitter-login" target="_blank" rel="external">Twitter 模拟登录</a></li>
-<li><a href="https://github.com/NiShuang/wx-index" target="_blank" rel="external">微信指数爬虫</a></li>
-<li><a href="https://github.com/NiShuang/google_trends_cralwer" target="_blank" rel="external">Google Trends 爬虫</a></li>
-<li><a href="https://github.com/NiShuang/fetch_baidu_index" target="_blank" rel="external">百度指数爬虫</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.cielni.com/2018/07/14/jfinal-mysql-timezone/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ciel Ni">
-      <meta itemprop="description" content="起风了 唯有努力生存">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="年轮说 | Ciel Ni">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/14/jfinal-mysql-timezone/" itemprop="url">
-                  数据库查询的时区问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-14 17:55:14" itemprop="dateCreated datePublished" datetime="2018-07-14T17:55:14+08:00">2018-07-14</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java笔记/" itemprop="url" rel="index"><span itemprop="name">java笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>BI系统需要查询北京时间的某一天内公司所有设备激活记录，而数据库中记录的激活时间都是0时区的，系统需要不管在本地（GMT+8）还是服务器（GMT+0）上，都能准确查询导数据。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先我们需要得到北京时间某一天的起始时间和结束时间的时间戳：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取时间区间</span></div><div class="line">Timestamp startTime = TimeKit.toChineseTimestamp(date); <span class="comment">// 该方法是自己封装的，即把字符串的时间按照时区转化成时间戳</span></div><div class="line">Timestamp endTime = <span class="keyword">new</span> Timestamp(startTime.getTime() + <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000L</span>);</div></pre></td></tr></table></figure>
-<p>然后使用该时间戳区间编写mysql语句，<strong>值得注意的是，因为程序会自动把时间戳转化成字符串格式的时期去数据库进行比较，而这个转换是根据系统时区进行的，也就是说在本地和在服务器，转换出来的时间会差8个小时。</strong>所以需要根据当前系统的时区，对时间戳作调整：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 因为mysql会将时间戳转换为字符串，所以减掉时区偏差</span></div><div class="line"><span class="keyword">int</span> offSet = TimeZone.getDefault().getRawOffset();</div><div class="line">startTime.setTime(startTime.getTime() - offSet);</div><div class="line">endTime.setTime(endTime.getTime() - offSet);</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/14/jfinal-mysql-timezone/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2014,7 +2028,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2101,7 +2115,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
