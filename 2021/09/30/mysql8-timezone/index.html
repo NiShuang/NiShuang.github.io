@@ -129,7 +129,7 @@
 <meta property="og:site_name" content="年轮说 | Ciel Ni">
 <meta property="og:description" content="背景因为数据库要升级到 MySQL 8.0 所以要对架构做升级，主要的修改工作如下：  驱动包要升级为 mysql-connector-java-8.0.11.jar  JDBC driver 由 com.mysql.jdbc.Driver 改为 com.mysql.cj.jdbc.Driver  JDBC url 中加上 userSSL=false   问题升级以后发现通过 Mybatisplu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-09-30T14:47:49.906Z">
+<meta property="og:updated_time" content="2021-09-30T15:34:50.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot 连接 MySQL 8.0 的时区问题">
 <meta name="twitter:description" content="背景因为数据库要升级到 MySQL 8.0 所以要对架构做升级，主要的修改工作如下：  驱动包要升级为 mysql-connector-java-8.0.11.jar  JDBC driver 由 com.mysql.jdbc.Driver 改为 com.mysql.cj.jdbc.Driver  JDBC url 中加上 userSSL=false   问题升级以后发现通过 Mybatisplu">
@@ -490,6 +490,7 @@
 </li>
 </ul>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>升级以后发现通过 Mybatisplus 从数据库获取的时间字段值和数据库的值会有几小时的差异，这其实是程序所在时区和数据库的时区不一致导致的。</p>
+<a id="more"></a> 
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>解决方案有两个</p>
 <h3 id="修改程序默认时区"><a href="#修改程序默认时区" class="headerlink" title="修改程序默认时区"></a>修改程序默认时区</h3><p>通过代码将程序的系统默认时区改成和数据库的时区一致，如果数据库时区为0时区，那需要将程序的系统时区改成0时区。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TimeZone.setDefault(TimeZone.getTimeZone(&quot;Asia/Shanghai&quot;))</div></pre></td></tr></table></figure></p>
 <h3 id="修改数据库时区"><a href="#修改数据库时区" class="headerlink" title="修改数据库时区"></a>修改数据库时区</h3><p>通过在JDBC url 增加参数，使数据库时区和程序系统时区一致：</p>

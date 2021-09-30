@@ -15,7 +15,7 @@
   <entry>
     <title><![CDATA[SqlServer读取image类型字段并存文件]]></title>
     <url>%2F2021%2F09%2F30%2Fsqlserver-image2file%2F</url>
-    <content type="text"><![CDATA[背景金蝶云上传文件的结果会以image类型保存在，现在希望用代码的方式把这部分文件批量导出 代码1234567891011121314sql = &quot;SELECT * FROM T_BAS_Attachment&quot;self.cursor.execute(sql)res = self.cursor.fetchall()for item in res: content = item[10] data = io.BytesIO(content) filename = item[4] if filename is not None: directory = &apos;/Users/insta360/Downloads/attachment/&apos; + item[1] if not os.path.exists(directory): os.makedirs(directory) with open(directory + &apos;/&apos; + item[5] + &apos;_&apos; + item[4], &apos;wb&apos;) as f: f.write(data.getvalue()) data.close()]]></content>
+    <content type="text"><![CDATA[背景金蝶云上传文件的结果会以image类型保存在SqlServer数据库，现在希望用代码的方式把这部分文件批量导出 代码1234567891011121314sql = &quot;SELECT * FROM T_BAS_Attachment&quot;self.cursor.execute(sql)res = self.cursor.fetchall()for item in res: content = item[10] data = io.BytesIO(content) filename = item[4] if filename is not None: directory = &apos;/Users/insta360/Downloads/attachment/&apos; + item[1] if not os.path.exists(directory): os.makedirs(directory) with open(directory + &apos;/&apos; + item[5] + &apos;_&apos; + item[4], &apos;wb&apos;) as f: f.write(data.getvalue()) data.close()]]></content>
       <categories>
         <category>后端笔记</category>
       </categories>
