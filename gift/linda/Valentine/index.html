@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://gebilaowang2018ming.github.io/pig/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"> 
+		<title>韦雨晴💕</title>
+		<style>
+			body{
+				width: 100%;
+				height: 100vh;
+				overflow: auto;
+			}
+			div{
+				width: 62%;
+				margin-top: 40%;
+				margin: auto;
+			}
+			div button{
+				width: 80px;
+				height: 50px;
+				font-size: 20px;
+			}
+			h1{
+				font-size: 1.5rem;
+			}
+			p{
+				font-size: 0.8rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>做你爸爸好不好？？？</h1>
+			<p id="p"></p>
+			<button id="yes">好</button>
+			<button id="no">不好</button>
+		</div>
+	
+	<script>
+		window.onload=function(){
+			var yes=document.getElementById("yes");
+			var no=document.getElementById("no");
+			var p=document.getElementById("p");
+			yes.onclick=function(){
+				alert("乖~爸爸爱你❤");
+			}
+			
+			var z=new Array("怎么？想反抗？","从了我吧","快从了我吧","哼，那我消失了","不让我做你爸爸，真消失了","消失，看你让不让我做你爸爸，哼！");
+			var i=0
+			no.onclick=function(){
+				p.innerHTML +=z[i]+"<br>";
+				if(i>4){
+					this.style.display="none";
+				}else{
+					i++;
+				}
+			}
+		}
+	</script>
+
+</body></html>
