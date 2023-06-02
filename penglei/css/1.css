@@ -1,0 +1,207 @@
+*{margin: 0px;padding: 0px;}
+
+.m_bg{
+    height: 120px;
+    background-color: #CFE3FA;
+    text-align: center;
+}
+/*导航部分*/
+.m_top{
+    height: 50px;
+    background-color: #094182;
+}
+.m_top ul{
+    width: 1200px;       /*10个li，一个100*/
+    height: 50px;        /*div 高度50*/
+    margin: 0px auto ;  /*外边距，上下0培训，左右auto:水平居中*/
+}
+.m_top ul li {
+    float: left;/*左浮动*/
+    width: 160px;
+    list-style: none;
+    line-height: 50px;
+    text-align: center;
+}
+.m_top ul li a{
+    color: aliceblue;
+    text-decoration: none;
+}
+.m_top ul li a:hover{
+    color: black;
+}
+.m_top ul li:hover{
+    background-color: #CFE3FA;
+}
+/*  轮播图部分*/
+.slide {
+    position: relative;
+    right: 320px;
+    width: 800px;
+    height: 500px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    border: 0px solid black;
+}
+.slide ul {
+    margin: 0px 0;
+    padding: 0;
+    width: calc(800px * 3);
+    transition: all .5s;
+}
+.slide li {
+    float: left;
+    width: 800px;
+    height: 500px;
+    list-style: none;
+    line-height: 500px;
+}
+.slide input[name="button"] {
+    display: none;
+}
+.slide label[for^="button"] { /*切换键设置*/
+    position: absolute;
+    top: 450px;
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+    line-height: 20px;
+    color: #fff;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: .3s;
+}
+.slide label[for="button1"] {
+    left: 40%;
+}
+.slide label[for="button2"] {
+    left: 45%;
+}
+.slide label[for="button3"] {
+    left: 50%;
+}
+#button1:checked ~ul {
+    margin-left: 0;
+}
+#button2:checked ~ul {
+    margin-left: -800px;
+}
+#button3:checked ~ul {
+    margin-left: -1600px;
+}
+#button1:checked ~ label[for="button1"] {
+    background: rgb(255,80,0);
+}
+#button2:checked ~ label[for="button2"] {
+    background: rgb(255,80,0);
+}
+
+#button3:checked ~ label[for="button3"] {
+    background: rgb(255,80,0);
+}
+/*3*/
+.m_3{
+    border: 0px solid red;
+    background-color: #f2f5f8;
+}
+.m_3 div{
+    border: 0px solid black;
+    width: 600px;
+    float: left;
+    margin-left: 200px; 
+   
+}
+.m_3 div:nth-of-type(1){
+    text-align: center;
+}
+.m_3 div:nth-of-type(2){
+    margin-left: 30px;
+    height: 300px;
+}
+.m_3 div:nth-of-type(2) ol{
+    list-style: none;
+    line-height: 35px;
+}
+.m_3 div:nth-of-type(2) ol li a{
+    text-decoration: none;
+    color: black;
+}
+.m_3 div:nth-of-type(2) ol li a:hover{
+    color: red;
+}
+.m_3 span{
+    color: #265b97;
+    font-size: 30px;
+}
+/*4*/
+.m_4{
+    height: 200px;
+    background-color: #CFE3FA;
+    position: relative;
+    top: 300px;
+}
+.m_4 span{
+    text-align: left;
+    font-size: 30px;
+    border: 0px solid black;
+    position: relative;
+    right: 1150px;
+}
+.m_4 img:nth-of-type(1){
+    position: relative;
+    right: 1100px;
+    top: 20px;
+}
+.m_4 img:nth-of-type(2){
+    position: relative;
+    right: 950px;
+    bottom: 83px;
+}
+.m_4 img:nth-of-type(3){
+    position: relative;
+    right: 810px;
+    bottom: 185px;
+}
+.m_4 img:nth-of-type(4){
+    position: relative;
+    left: 760px;
+    bottom: 290px;
+}
+.m_4 img:nth-of-type(5){
+    position: relative;
+    left: 800px;
+    bottom: 290px;
+}
+.m_4 img:nth-of-type(6){
+    position: relative;
+    left: 850px;
+    bottom: 290px;
+}
+.m_4 img:nth-of-type(7){
+    position: relative;
+    left: 900px;
+    bottom: 290px;
+}
+/*页脚部分*/
+.m_foot{
+    position: relative;
+    top: 200px;
+    overflow: hidden;
+    clear: both;
+    background-color: #094182;
+    padding:20px 0px;
+    height: 200px;
+}
+.m_foot ul{
+    position: relative;
+    left: 300px;
+    float: left;
+    line-height: 40px;
+    color: white;
+    list-style: none;
+}
+.m_foot ul:nth-of-type(2){
+    position: relative;
+    left: 600px;
+}
